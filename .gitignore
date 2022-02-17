@@ -1,0 +1,9 @@
+.*
+*.[oad]
+!.gitignore
+*~
+a.out
+a.out-*
+*-32*
+*-64*
+*.pdf
