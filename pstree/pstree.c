@@ -96,22 +96,12 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
       printf("read pid file failed, file_name /proc/%s\n", dir->d_name);
       return -1;
     }
-    int cur_pid;
-    char cur_pid_char[512];
-    char name[512];
-    char running_state[512];
-    int ppid;
-    char ppid_char[512];
-    char file_data[1024];
-    /*fgets(file_data, 1024, fp);
-    printf("file_data :%s\n", file_data);*/
-    fscanf(fp, "%s%s%s%s", cur_pid_char, name, running_state, ppid_char);
-    printf("xxxpid %s, name %s, running_state %s, ppid_char %s\n", cur_pid_char, name, running_state, ppid_char);
-    if (fscanf(fp, "%d(%s)%s%d", &cur_pid, name, running_state, &ppid) != EOF){
+    char cur_pid_char[128], name[512], running_state[32], ppid_char[128];
+    if (fscanf(fp, "%s%s%s%s", cur_pid_char, name, running_state, ppid_char) != EOF){
       // consturct the value; 
       strncpy(pid_info_list[index].name, name, 512);
-      pid_info_list[index].pid = cur_pid;
-      pid_info_list[index].ppid = ppid;
+      pid_info_list[index].pid = atoi(cur_pid_char);
+      pid_info_list[index].ppid = atoi(ppid_char);
       pid_info_list[index].next = NULL;
       index++; 
       printf("file_name %s, name %s, pid %d, ppid %d, next %p\n", 
