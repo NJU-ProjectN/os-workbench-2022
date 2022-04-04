@@ -26,7 +26,7 @@ int process_args(int argc, char *argv[], struct Args *args){
     } else if (strcmp("-V", argv_i) == 0 || strcmp("--version", argv_i) == 0) {
       args->version = 1;
     } else {
-      printf("invalid option -- '%s'", argv);
+      printf("invalid option -- '%s'", argv_i);
       return -1;
     }
   }
