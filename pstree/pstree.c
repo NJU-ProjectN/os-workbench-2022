@@ -56,7 +56,7 @@ struct pid_info {
   struct pid_info* next;
 };
 
-int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o){
+int get_pid_list(struct pid_info **pid_info_list_o, int *pid_num_o){
   const char* dir_path = "/proc";
   DIR *d = opendir(dir_path);
   int pid_num = 0;
@@ -68,7 +68,7 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
     pid_num++;
   }
   if (pid_num == 0) {
-    printf("get nil pid_num");
+    printf("get pid_num 0");
     return -1;
   }
   rewinddir(d);
@@ -111,6 +111,7 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
     d = NULL;
   }
   *pid_num_o = pid_num;
+  *pid_info_list_o = pid_info_list;
   return 0;
 }
 
@@ -135,19 +136,18 @@ int main(int argc, char *argv[]) {
   }
 
   // get pid list;
-  int* pid_list;
   int pid_num;
   struct pid_info* pid_info_list;
-  error_code = get_pid_list(&pid_list, &pid_num, &pid_info_list);
+  error_code = get_pid_list(&pid_info_list, &pid_num);
   if(error_code != 0){
     return -1;
   }
-
   // construct tree, find the root of each pid, and construt the tree;
   
   // print the tree in bfs;
-  if (pid_list) {
-    free(pid_list);
+  if (pid_info_list) {
+    free(pid_info_list);
+    pid_info_list = NULL;
   }
   return 0;
 }
