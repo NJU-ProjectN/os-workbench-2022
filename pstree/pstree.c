@@ -50,16 +50,20 @@ void print_version_info(){
 }
 
 int get_pid_list(int **pid_o, int *pid_num_o){
+  printf("2");
   DIR *d = opendir("/proc");
+  printf("3");
   int pid_num = 0;
   if (d) {
     while (readdir(d) != NULL){
       pid_num++;
     }
   }
+  printf("4");
   if (pid_num == 0) {
     return -1;
   }
+  printf("5");
   int* pid_array = (int*)malloc(sizeof(int)*pid_num);
   int index = 0;
   struct dirent *dir;
@@ -101,6 +105,7 @@ int main(int argc, char *argv[]) {
   // get pid list;
   int* pid_list;
   int pid_num;
+  printf("1");
   error_code = get_pid_list(&pid_list, &pid_num);
   if(error_code != 0){
     if (pid_list != NULL) {
