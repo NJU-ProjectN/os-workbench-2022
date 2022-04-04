@@ -50,7 +50,7 @@ void print_version_info(){
 }
 
 struct pid_info {
-  char name[256];
+  char name[512];
   int pid;
   int ppid;
   struct pid_info* next;
@@ -84,13 +84,13 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
         FILE *fp = fopen(file_path, "r");
         if (fp) {
           int pid;
-          char name[256];
-          char running_state[256];
+          char name[512];
+          char running_state[512];
           int ppid;
-          char file_data[256];
+          char file_data[512];
           if (fscanf(fp, "%d (%s) %s %d", &pid, name, running_state, &ppid) != EOF){
            // consturct the value; 
-           strncpy(pid_info_list[index].name, name, 256);
+           strncpy(pid_info_list[index].name, name, 512);
            pid_info_list[index].pid = pid;
            pid_info_list[index].ppid = ppid;
            pid_info_list[index].next = NULL;
