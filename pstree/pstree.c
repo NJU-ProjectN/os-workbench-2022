@@ -120,6 +120,7 @@ int compare(const void* a, const void* b) {
   struct pid_info * info_a = (struct pid_info *)a;
   struct pid_info * info_b = (struct pid_info *)b;
   if (info_a != NULL && info_b != NULL) {
+    printf("a %d b %d", info_a->pid, info_b->pid);
     return info_a->pid < info_b->pid;
   }
   return 0;
@@ -144,6 +145,7 @@ int append_child_node(struct pid_info *pid_info_list_i, int pid_num_i, int ppid_
    } 
   }
   if (need_sort != 0) {
+    printf("sorted");
     qsort(pid_info_list, child_num, sizeof(struct pid_info*), compare);
   }
 
