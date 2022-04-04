@@ -75,10 +75,10 @@ int get_pid_list(int **pid_o, int *pid_num_o){
     while ((dir = readdir(d)) != NULL){
       int pid = atoi(dir->d_name);
       if (pid < 0) {
-        printf("ignore error file %s", dir->d_name);
+        printf("ignore error file %s\n", dir->d_name);
       }
       pid_array[index++] = pid;
-      printf("pid get %d", pid);
+      printf("pid get %d\n", pid);
     }
   }
   *pid_o = pid_array; 
