@@ -101,7 +101,7 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
     char running_state[512];
     int ppid;
     char file_data[512];
-    if (fscanf(fp, "%d %s %s %d", &cur_pid, name, running_state, &ppid) != EOF){
+    if (fscanf(fp, "%d %s %s %d", &cur_pid, &name, &running_state, &ppid) != EOF){
       // consturct the value; 
       strncpy(pid_info_list[index].name, name, 512);
       pid_info_list[index].pid = cur_pid;
