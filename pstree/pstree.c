@@ -99,6 +99,12 @@ int main(int argc, char *argv[]) {
   }
 
   // get pid list;
+  int* pid_list;
+  int pid_num;
+  error_code = get_pid_list(&pid_list, &pid_num);
+  if(error_code == 0){
+    return -1;
+  }
 
   // construct tree, find the root of each pid, and construt the tree;
   // print the pid tree;
