@@ -76,6 +76,7 @@ int get_pid_list(int **pid_o, int *pid_num_o){
       int pid = atoi(dir->d_name);
       if (pid <= 0) {
         printf("ignore error file %s\n", dir->d_name);
+        continue;
       }
       pid_array[index++] = pid;
       printf("pid get %d\n", pid);
