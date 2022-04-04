@@ -182,7 +182,7 @@ systemd(1)-+-systemd-journal(249)
            |               `-{rsyslogd}(613)
            |-cron(605)
 */
-int print_tree(struct pid_info *pid_tree, int space_num, int need_back_track){
+int print_tree(struct pid_info *pid_tree, int space_num, int need_back_track, char* prefix){
   if (pid_tree == NULL) {
     //printf("nil pid tree");
     return -1;
@@ -192,24 +192,23 @@ int print_tree(struct pid_info *pid_tree, int space_num, int need_back_track){
       printf(" ");
     }
   }
-  printf("%s(%d)", pid_tree->name, pid_tree->pid);
+  printf("%s%s(%d)", prefix, pid_tree->name, pid_tree->pid);
   if (pid_tree->children_num == 0) {
     return 0;
   }
-  printf("-");
   for(int i = 0; i < pid_tree->children_num; i++){
     if (i == 0) {
-      printf("+-");
-      print_tree(pid_tree->children[i], space_num+sizeof(pid_tree->name)+1, 0);
+      //printf("");
+      print_tree(pid_tree->children[i], space_num+sizeof(pid_tree->name)+1, 0, "-+-");
       continue;
     }
     if (i == pid_tree->children_num - 1) {
-      printf("\n`-");
-      print_tree(pid_tree->children[i], space_num+sizeof(pid_tree->name)+1, 1);
+      printf("\n");
+      print_tree(pid_tree->children[i], space_num+sizeof(pid_tree->name)+1, 1, "`-");
       continue;
     }
-    printf("\n|-");
-    print_tree(pid_tree->children[i], space_num+sizeof(pid_tree->name)+1, 1);
+    printf("\n");
+    print_tree(pid_tree->children[i], space_num+sizeof(pid_tree->name)+1, 1, "|-");
   }
   return 0;
 }
@@ -250,10 +249,10 @@ int main(int argc, char *argv[]) {
     printf("construct_tree failed");
     return -1;
   }
-  printf("pid_tree %p", pid_tree);
+  printf("pid_tree %p\n", pid_tree);
 
   // print the tree in bfs;
-  error_code = print_tree(pid_tree, 0, 0);
+  error_code = print_tree(pid_tree, 0, 0, "");
   if(error_code != 0){
     printf("print_tree failed");
     return -1;
