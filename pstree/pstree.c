@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
   int* pid_list;
   int pid_num;
   error_code = get_pid_list(&pid_list, &pid_num);
-  if(error_code == 0){
+  if(error_code != 0){
     if (pid_list != NULL) {
       free(pid_list);
     }
