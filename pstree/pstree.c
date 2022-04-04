@@ -123,6 +123,7 @@ int append_child_node(struct pid_info *pid_info_list_i, int pid_num_i, int ppid_
      child_num++;
    } 
   }
+  printf("5 child_num %d\n", child_num);
   if (child_num == 0) {
     return 0;
   }
