@@ -121,7 +121,7 @@ int compare(const void* a, const void* b) {
   struct pid_info * info_b = (struct pid_info *)b;
   if (info_a != NULL && info_b != NULL) {
     printf("a %d b %d\n", info_a->pid, info_b->pid);
-    return info_a->pid < info_b->pid;
+    return info_a->pid - info_b->pid;
   }
   return 0;
 }
