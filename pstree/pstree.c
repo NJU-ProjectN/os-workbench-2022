@@ -187,11 +187,11 @@ int print_tree(struct pid_info *pid_tree, int space_num, int need_back_track, ch
     //printf("nil pid tree");
     return -1;
   }
-  for (int i = 0; i < space_num; i++) {
+  /*for (int i = 0; i < space_num; i++) {
     if (need_back_track != 0){
       printf(" ");
     }
-  }
+  }*/
   printf("%s%s(%d)", prefix, pid_tree->name, pid_tree->pid);
   if (pid_tree->children_num == 0) {
     return 0;
