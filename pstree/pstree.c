@@ -235,8 +235,7 @@ int main(int argc, char *argv[]) {
   }
 
   // print the tree in bfs;
-  struct pid_info* pid_tree;
-  error_code = print_tree(pid_info_list, pid_num, &pid_tree);
+  error_code = print_tree(pid_tree, 0, 0);
   if(error_code != 0){
     printf("print_tree failed");
     return -1;
