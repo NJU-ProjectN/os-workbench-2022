@@ -1,0 +1,1381 @@
+/proc/4121
+├── attr
+│   ├── current
+│   ├── exec
+│   ├── fscreate
+│   ├── keycreate
+│   ├── prev
+│   └── sockcreate
+├── autogroup
+├── auxv
+├── cgroup
+├── clear_refs
+├── cmdline
+├── comm
+├── coredump_filter
+├── cpuset
+├── cwd -> /root/bin/clash
+├── environ
+├── exe -> /root/bin/clash/clash-linux-amd64-v1.2.0
+├── fd
+│   ├── 0 -> /dev/pts/5
+│   ├── 1 -> /dev/pts/5
+│   ├── 2 -> /dev/pts/5
+│   ├── 3 -> anon_inode:[eventpoll]
+│   ├── 4 -> pipe:[21525234]
+│   ├── 5 -> pipe:[21525234]
+│   ├── 6 -> socket:[21525235]
+│   ├── 7 -> socket:[21525236]
+│   ├── 8 -> socket:[21525240]
+│   └── 9 -> socket:[21524332]
+├── fdinfo
+│   ├── 0
+│   ├── 1
+│   ├── 2
+│   ├── 3
+│   ├── 4
+│   ├── 5
+│   ├── 6
+│   ├── 7
+│   ├── 8
+│   └── 9
+├── gid_map
+├── io
+├── limits
+├── loginuid
+├── map_files
+│   ├── 400000-874000 -> /root/bin/clash/clash-linux-amd64-v1.2.0
+│   ├── 874000-c47000 -> /root/bin/clash/clash-linux-amd64-v1.2.0
+│   └── c47000-ca7000 -> /root/bin/clash/clash-linux-amd64-v1.2.0
+├── maps
+├── mem
+├── mountinfo
+├── mounts
+├── mountstats
+├── net
+│   ├── anycast6
+│   ├── arp
+│   ├── connector
+│   ├── dev
+│   ├── dev_mcast
+│   ├── dev_snmp6
+│   │   ├── eth0
+│   │   └── lo
+│   ├── fib_trie
+│   ├── fib_triestat
+│   ├── icmp
+│   ├── icmp6
+│   ├── if_inet6
+│   ├── igmp
+│   ├── igmp6
+│   ├── ip6_flowlabel
+│   ├── ip6_mr_cache
+│   ├── ip6_mr_vif
+│   ├── ip_mr_cache
+│   ├── ip_mr_vif
+│   ├── ip_tables_matches
+│   ├── ip_tables_names
+│   ├── ip_tables_targets
+│   ├── ipv6_route
+│   ├── mcfilter
+│   ├── mcfilter6
+│   ├── netfilter
+│   │   └── nf_log
+│   ├── netlink
+│   ├── netstat
+│   ├── packet
+│   ├── protocols
+│   ├── psched
+│   ├── ptype
+│   ├── raw
+│   ├── raw6
+│   ├── route
+│   ├── rt6_stats
+│   ├── rt_acct
+│   ├── rt_cache
+│   ├── snmp
+│   ├── snmp6
+│   ├── sockstat
+│   ├── sockstat6
+│   ├── softnet_stat
+│   ├── stat
+│   │   ├── arp_cache
+│   │   ├── ndisc_cache
+│   │   └── rt_cache
+│   ├── tcp
+│   ├── tcp6
+│   ├── udp
+│   ├── udp6
+│   ├── udplite
+│   ├── udplite6
+│   ├── unix
+│   └── wireless
+├── ns
+│   ├── cgroup -> cgroup:[4026531835]
+│   ├── ipc -> ipc:[4026531839]
+│   ├── mnt -> mnt:[4026531840]
+│   ├── net -> net:[4026531992]
+│   ├── pid -> pid:[4026531836]
+│   ├── pid_for_children -> pid:[4026531836]
+│   ├── user -> user:[4026531837]
+│   └── uts -> uts:[4026531838]
+├── numa_maps
+├── oom_adj
+├── oom_score
+├── oom_score_adj
+├── pagemap
+├── patch_state
+├── personality
+├── projid_map
+├── root -> /
+├── sched
+├── schedstat
+├── sessionid
+├── setgroups
+├── smaps
+├── smaps_rollup
+├── stack
+├── stat
+├── statm
+├── status
+├── syscall
+├── task
+│   ├── 4121
+│   │   ├── attr
+│   │   │   ├── current
+│   │   │   ├── exec
+│   │   │   ├── fscreate
+│   │   │   ├── keycreate
+│   │   │   ├── prev
+│   │   │   └── sockcreate
+│   │   ├── auxv
+│   │   ├── cgroup
+│   │   ├── children
+│   │   ├── clear_refs
+│   │   ├── cmdline
+│   │   ├── comm
+│   │   ├── cpuset
+│   │   ├── cwd -> /root/bin/clash
+│   │   ├── environ
+│   │   ├── exe -> /root/bin/clash/clash-linux-amd64-v1.2.0
+│   │   ├── fd
+│   │   │   ├── 0 -> /dev/pts/5
+│   │   │   ├── 1 -> /dev/pts/5
+│   │   │   ├── 2 -> /dev/pts/5
+│   │   │   ├── 3 -> anon_inode:[eventpoll]
+│   │   │   ├── 4 -> pipe:[21525234]
+│   │   │   ├── 5 -> pipe:[21525234]
+│   │   │   ├── 6 -> socket:[21525235]
+│   │   │   ├── 7 -> socket:[21525236]
+│   │   │   ├── 8 -> socket:[21525240]
+│   │   │   └── 9 -> socket:[21524332]
+│   │   ├── fdinfo
+│   │   │   ├── 0
+│   │   │   ├── 1
+│   │   │   ├── 2
+│   │   │   ├── 3
+│   │   │   ├── 4
+│   │   │   ├── 5
+│   │   │   ├── 6
+│   │   │   ├── 7
+│   │   │   ├── 8
+│   │   │   └── 9
+│   │   ├── gid_map
+│   │   ├── io
+│   │   ├── limits
+│   │   ├── loginuid
+│   │   ├── maps
+│   │   ├── mem
+│   │   ├── mountinfo
+│   │   ├── mounts
+│   │   ├── net
+│   │   │   ├── anycast6
+│   │   │   ├── arp
+│   │   │   ├── connector
+│   │   │   ├── dev
+│   │   │   ├── dev_mcast
+│   │   │   ├── dev_snmp6
+│   │   │   │   ├── eth0
+│   │   │   │   └── lo
+│   │   │   ├── fib_trie
+│   │   │   ├── fib_triestat
+│   │   │   ├── icmp
+│   │   │   ├── icmp6
+│   │   │   ├── if_inet6
+│   │   │   ├── igmp
+│   │   │   ├── igmp6
+│   │   │   ├── ip6_flowlabel
+│   │   │   ├── ip6_mr_cache
+│   │   │   ├── ip6_mr_vif
+│   │   │   ├── ip_mr_cache
+│   │   │   ├── ip_mr_vif
+│   │   │   ├── ip_tables_matches
+│   │   │   ├── ip_tables_names
+│   │   │   ├── ip_tables_targets
+│   │   │   ├── ipv6_route
+│   │   │   ├── mcfilter
+│   │   │   ├── mcfilter6
+│   │   │   ├── netfilter
+│   │   │   │   └── nf_log
+│   │   │   ├── netlink
+│   │   │   ├── netstat
+│   │   │   ├── packet
+│   │   │   ├── protocols
+│   │   │   ├── psched
+│   │   │   ├── ptype
+│   │   │   ├── raw
+│   │   │   ├── raw6
+│   │   │   ├── route
+│   │   │   ├── rt6_stats
+│   │   │   ├── rt_acct
+│   │   │   ├── rt_cache
+│   │   │   ├── snmp
+│   │   │   ├── snmp6
+│   │   │   ├── sockstat
+│   │   │   ├── sockstat6
+│   │   │   ├── softnet_stat
+│   │   │   ├── stat
+│   │   │   │   ├── arp_cache
+│   │   │   │   ├── ndisc_cache
+│   │   │   │   └── rt_cache
+│   │   │   ├── tcp
+│   │   │   ├── tcp6
+│   │   │   ├── udp
+│   │   │   ├── udp6
+│   │   │   ├── udplite
+│   │   │   ├── udplite6
+│   │   │   ├── unix
+│   │   │   └── wireless
+│   │   ├── ns
+│   │   │   ├── cgroup -> cgroup:[4026531835]
+│   │   │   ├── ipc -> ipc:[4026531839]
+│   │   │   ├── mnt -> mnt:[4026531840]
+│   │   │   ├── net -> net:[4026531992]
+│   │   │   ├── pid -> pid:[4026531836]
+│   │   │   ├── pid_for_children -> pid:[4026531836]
+│   │   │   ├── user -> user:[4026531837]
+│   │   │   └── uts -> uts:[4026531838]
+│   │   ├── numa_maps
+│   │   ├── oom_adj
+│   │   ├── oom_score
+│   │   ├── oom_score_adj
+│   │   ├── pagemap
+│   │   ├── patch_state
+│   │   ├── personality
+│   │   ├── projid_map
+│   │   ├── root -> /
+│   │   ├── sched
+│   │   ├── schedstat
+│   │   ├── sessionid
+│   │   ├── setgroups
+│   │   ├── smaps
+│   │   ├── smaps_rollup
+│   │   ├── stack
+│   │   ├── stat
+│   │   ├── statm
+│   │   ├── status
+│   │   ├── syscall
+│   │   ├── uid_map
+│   │   └── wchan
+│   ├── 4122
+│   │   ├── attr
+│   │   │   ├── current
+│   │   │   ├── exec
+│   │   │   ├── fscreate
+│   │   │   ├── keycreate
+│   │   │   ├── prev
+│   │   │   └── sockcreate
+│   │   ├── auxv
+│   │   ├── cgroup
+│   │   ├── children
+│   │   ├── clear_refs
+│   │   ├── cmdline
+│   │   ├── comm
+│   │   ├── cpuset
+│   │   ├── cwd -> /root/bin/clash
+│   │   ├── environ
+│   │   ├── exe -> /root/bin/clash/clash-linux-amd64-v1.2.0
+│   │   ├── fd
+│   │   │   ├── 0 -> /dev/pts/5
+│   │   │   ├── 1 -> /dev/pts/5
+│   │   │   ├── 2 -> /dev/pts/5
+│   │   │   ├── 3 -> anon_inode:[eventpoll]
+│   │   │   ├── 4 -> pipe:[21525234]
+│   │   │   ├── 5 -> pipe:[21525234]
+│   │   │   ├── 6 -> socket:[21525235]
+│   │   │   ├── 7 -> socket:[21525236]
+│   │   │   ├── 8 -> socket:[21525240]
+│   │   │   └── 9 -> socket:[21524332]
+│   │   ├── fdinfo
+│   │   │   ├── 0
+│   │   │   ├── 1
+│   │   │   ├── 2
+│   │   │   ├── 3
+│   │   │   ├── 4
+│   │   │   ├── 5
+│   │   │   ├── 6
+│   │   │   ├── 7
+│   │   │   ├── 8
+│   │   │   └── 9
+│   │   ├── gid_map
+│   │   ├── io
+│   │   ├── limits
+│   │   ├── loginuid
+│   │   ├── maps
+│   │   ├── mem
+│   │   ├── mountinfo
+│   │   ├── mounts
+│   │   ├── net
+│   │   │   ├── anycast6
+│   │   │   ├── arp
+│   │   │   ├── connector
+│   │   │   ├── dev
+│   │   │   ├── dev_mcast
+│   │   │   ├── dev_snmp6
+│   │   │   │   ├── eth0
+│   │   │   │   └── lo
+│   │   │   ├── fib_trie
+│   │   │   ├── fib_triestat
+│   │   │   ├── icmp
+│   │   │   ├── icmp6
+│   │   │   ├── if_inet6
+│   │   │   ├── igmp
+│   │   │   ├── igmp6
+│   │   │   ├── ip6_flowlabel
+│   │   │   ├── ip6_mr_cache
+│   │   │   ├── ip6_mr_vif
+│   │   │   ├── ip_mr_cache
+│   │   │   ├── ip_mr_vif
+│   │   │   ├── ip_tables_matches
+│   │   │   ├── ip_tables_names
+│   │   │   ├── ip_tables_targets
+│   │   │   ├── ipv6_route
+│   │   │   ├── mcfilter
+│   │   │   ├── mcfilter6
+│   │   │   ├── netfilter
+│   │   │   │   └── nf_log
+│   │   │   ├── netlink
+│   │   │   ├── netstat
+│   │   │   ├── packet
+│   │   │   ├── protocols
+│   │   │   ├── psched
+│   │   │   ├── ptype
+│   │   │   ├── raw
+│   │   │   ├── raw6
+│   │   │   ├── route
+│   │   │   ├── rt6_stats
+│   │   │   ├── rt_acct
+│   │   │   ├── rt_cache
+│   │   │   ├── snmp
+│   │   │   ├── snmp6
+│   │   │   ├── sockstat
+│   │   │   ├── sockstat6
+│   │   │   ├── softnet_stat
+│   │   │   ├── stat
+│   │   │   │   ├── arp_cache
+│   │   │   │   ├── ndisc_cache
+│   │   │   │   └── rt_cache
+│   │   │   ├── tcp
+│   │   │   ├── tcp6
+│   │   │   ├── udp
+│   │   │   ├── udp6
+│   │   │   ├── udplite
+│   │   │   ├── udplite6
+│   │   │   ├── unix
+│   │   │   └── wireless
+│   │   ├── ns
+│   │   │   ├── cgroup -> cgroup:[4026531835]
+│   │   │   ├── ipc -> ipc:[4026531839]
+│   │   │   ├── mnt -> mnt:[4026531840]
+│   │   │   ├── net -> net:[4026531992]
+│   │   │   ├── pid -> pid:[4026531836]
+│   │   │   ├── pid_for_children -> pid:[4026531836]
+│   │   │   ├── user -> user:[4026531837]
+│   │   │   └── uts -> uts:[4026531838]
+│   │   ├── numa_maps
+│   │   ├── oom_adj
+│   │   ├── oom_score
+│   │   ├── oom_score_adj
+│   │   ├── pagemap
+│   │   ├── patch_state
+│   │   ├── personality
+│   │   ├── projid_map
+│   │   ├── root -> /
+│   │   ├── sched
+│   │   ├── schedstat
+│   │   ├── sessionid
+│   │   ├── setgroups
+│   │   ├── smaps
+│   │   ├── smaps_rollup
+│   │   ├── stack
+│   │   ├── stat
+│   │   ├── statm
+│   │   ├── status
+│   │   ├── syscall
+│   │   ├── uid_map
+│   │   └── wchan
+│   ├── 4123
+│   │   ├── attr
+│   │   │   ├── current
+│   │   │   ├── exec
+│   │   │   ├── fscreate
+│   │   │   ├── keycreate
+│   │   │   ├── prev
+│   │   │   └── sockcreate
+│   │   ├── auxv
+│   │   ├── cgroup
+│   │   ├── children
+│   │   ├── clear_refs
+│   │   ├── cmdline
+│   │   ├── comm
+│   │   ├── cpuset
+│   │   ├── cwd -> /root/bin/clash
+│   │   ├── environ
+│   │   ├── exe -> /root/bin/clash/clash-linux-amd64-v1.2.0
+│   │   ├── fd
+│   │   │   ├── 0 -> /dev/pts/5
+│   │   │   ├── 1 -> /dev/pts/5
+│   │   │   ├── 2 -> /dev/pts/5
+│   │   │   ├── 3 -> anon_inode:[eventpoll]
+│   │   │   ├── 4 -> pipe:[21525234]
+│   │   │   ├── 5 -> pipe:[21525234]
+│   │   │   ├── 6 -> socket:[21525235]
+│   │   │   ├── 7 -> socket:[21525236]
+│   │   │   ├── 8 -> socket:[21525240]
+│   │   │   └── 9 -> socket:[21524332]
+│   │   ├── fdinfo
+│   │   │   ├── 0
+│   │   │   ├── 1
+│   │   │   ├── 2
+│   │   │   ├── 3
+│   │   │   ├── 4
+│   │   │   ├── 5
+│   │   │   ├── 6
+│   │   │   ├── 7
+│   │   │   ├── 8
+│   │   │   └── 9
+│   │   ├── gid_map
+│   │   ├── io
+│   │   ├── limits
+│   │   ├── loginuid
+│   │   ├── maps
+│   │   ├── mem
+│   │   ├── mountinfo
+│   │   ├── mounts
+│   │   ├── net
+│   │   │   ├── anycast6
+│   │   │   ├── arp
+│   │   │   ├── connector
+│   │   │   ├── dev
+│   │   │   ├── dev_mcast
+│   │   │   ├── dev_snmp6
+│   │   │   │   ├── eth0
+│   │   │   │   └── lo
+│   │   │   ├── fib_trie
+│   │   │   ├── fib_triestat
+│   │   │   ├── icmp
+│   │   │   ├── icmp6
+│   │   │   ├── if_inet6
+│   │   │   ├── igmp
+│   │   │   ├── igmp6
+│   │   │   ├── ip6_flowlabel
+│   │   │   ├── ip6_mr_cache
+│   │   │   ├── ip6_mr_vif
+│   │   │   ├── ip_mr_cache
+│   │   │   ├── ip_mr_vif
+│   │   │   ├── ip_tables_matches
+│   │   │   ├── ip_tables_names
+│   │   │   ├── ip_tables_targets
+│   │   │   ├── ipv6_route
+│   │   │   ├── mcfilter
+│   │   │   ├── mcfilter6
+│   │   │   ├── netfilter
+│   │   │   │   └── nf_log
+│   │   │   ├── netlink
+│   │   │   ├── netstat
+│   │   │   ├── packet
+│   │   │   ├── protocols
+│   │   │   ├── psched
+│   │   │   ├── ptype
+│   │   │   ├── raw
+│   │   │   ├── raw6
+│   │   │   ├── route
+│   │   │   ├── rt6_stats
+│   │   │   ├── rt_acct
+│   │   │   ├── rt_cache
+│   │   │   ├── snmp
+│   │   │   ├── snmp6
+│   │   │   ├── sockstat
+│   │   │   ├── sockstat6
+│   │   │   ├── softnet_stat
+│   │   │   ├── stat
+│   │   │   │   ├── arp_cache
+│   │   │   │   ├── ndisc_cache
+│   │   │   │   └── rt_cache
+│   │   │   ├── tcp
+│   │   │   ├── tcp6
+│   │   │   ├── udp
+│   │   │   ├── udp6
+│   │   │   ├── udplite
+│   │   │   ├── udplite6
+│   │   │   ├── unix
+│   │   │   └── wireless
+│   │   ├── ns
+│   │   │   ├── cgroup -> cgroup:[4026531835]
+│   │   │   ├── ipc -> ipc:[4026531839]
+│   │   │   ├── mnt -> mnt:[4026531840]
+│   │   │   ├── net -> net:[4026531992]
+│   │   │   ├── pid -> pid:[4026531836]
+│   │   │   ├── pid_for_children -> pid:[4026531836]
+│   │   │   ├── user -> user:[4026531837]
+│   │   │   └── uts -> uts:[4026531838]
+│   │   ├── numa_maps
+│   │   ├── oom_adj
+│   │   ├── oom_score
+│   │   ├── oom_score_adj
+│   │   ├── pagemap
+│   │   ├── patch_state
+│   │   ├── personality
+│   │   ├── projid_map
+│   │   ├── root -> /
+│   │   ├── sched
+│   │   ├── schedstat
+│   │   ├── sessionid
+│   │   ├── setgroups
+│   │   ├── smaps
+│   │   ├── smaps_rollup
+│   │   ├── stack
+│   │   ├── stat
+│   │   ├── statm
+│   │   ├── status
+│   │   ├── syscall
+│   │   ├── uid_map
+│   │   └── wchan
+│   ├── 4124
+│   │   ├── attr
+│   │   │   ├── current
+│   │   │   ├── exec
+│   │   │   ├── fscreate
+│   │   │   ├── keycreate
+│   │   │   ├── prev
+│   │   │   └── sockcreate
+│   │   ├── auxv
+│   │   ├── cgroup
+│   │   ├── children
+│   │   ├── clear_refs
+│   │   ├── cmdline
+│   │   ├── comm
+│   │   ├── cpuset
+│   │   ├── cwd -> /root/bin/clash
+│   │   ├── environ
+│   │   ├── exe -> /root/bin/clash/clash-linux-amd64-v1.2.0
+│   │   ├── fd
+│   │   │   ├── 0 -> /dev/pts/5
+│   │   │   ├── 1 -> /dev/pts/5
+│   │   │   ├── 2 -> /dev/pts/5
+│   │   │   ├── 3 -> anon_inode:[eventpoll]
+│   │   │   ├── 4 -> pipe:[21525234]
+│   │   │   ├── 5 -> pipe:[21525234]
+│   │   │   ├── 6 -> socket:[21525235]
+│   │   │   ├── 7 -> socket:[21525236]
+│   │   │   ├── 8 -> socket:[21525240]
+│   │   │   └── 9 -> socket:[21524332]
+│   │   ├── fdinfo
+│   │   │   ├── 0
+│   │   │   ├── 1
+│   │   │   ├── 2
+│   │   │   ├── 3
+│   │   │   ├── 4
+│   │   │   ├── 5
+│   │   │   ├── 6
+│   │   │   ├── 7
+│   │   │   ├── 8
+│   │   │   └── 9
+│   │   ├── gid_map
+│   │   ├── io
+│   │   ├── limits
+│   │   ├── loginuid
+│   │   ├── maps
+│   │   ├── mem
+│   │   ├── mountinfo
+│   │   ├── mounts
+│   │   ├── net
+│   │   │   ├── anycast6
+│   │   │   ├── arp
+│   │   │   ├── connector
+│   │   │   ├── dev
+│   │   │   ├── dev_mcast
+│   │   │   ├── dev_snmp6
+│   │   │   │   ├── eth0
+│   │   │   │   └── lo
+│   │   │   ├── fib_trie
+│   │   │   ├── fib_triestat
+│   │   │   ├── icmp
+│   │   │   ├── icmp6
+│   │   │   ├── if_inet6
+│   │   │   ├── igmp
+│   │   │   ├── igmp6
+│   │   │   ├── ip6_flowlabel
+│   │   │   ├── ip6_mr_cache
+│   │   │   ├── ip6_mr_vif
+│   │   │   ├── ip_mr_cache
+│   │   │   ├── ip_mr_vif
+│   │   │   ├── ip_tables_matches
+│   │   │   ├── ip_tables_names
+│   │   │   ├── ip_tables_targets
+│   │   │   ├── ipv6_route
+│   │   │   ├── mcfilter
+│   │   │   ├── mcfilter6
+│   │   │   ├── netfilter
+│   │   │   │   └── nf_log
+│   │   │   ├── netlink
+│   │   │   ├── netstat
+│   │   │   ├── packet
+│   │   │   ├── protocols
+│   │   │   ├── psched
+│   │   │   ├── ptype
+│   │   │   ├── raw
+│   │   │   ├── raw6
+│   │   │   ├── route
+│   │   │   ├── rt6_stats
+│   │   │   ├── rt_acct
+│   │   │   ├── rt_cache
+│   │   │   ├── snmp
+│   │   │   ├── snmp6
+│   │   │   ├── sockstat
+│   │   │   ├── sockstat6
+│   │   │   ├── softnet_stat
+│   │   │   ├── stat
+│   │   │   │   ├── arp_cache
+│   │   │   │   ├── ndisc_cache
+│   │   │   │   └── rt_cache
+│   │   │   ├── tcp
+│   │   │   ├── tcp6
+│   │   │   ├── udp
+│   │   │   ├── udp6
+│   │   │   ├── udplite
+│   │   │   ├── udplite6
+│   │   │   ├── unix
+│   │   │   └── wireless
+│   │   ├── ns
+│   │   │   ├── cgroup -> cgroup:[4026531835]
+│   │   │   ├── ipc -> ipc:[4026531839]
+│   │   │   ├── mnt -> mnt:[4026531840]
+│   │   │   ├── net -> net:[4026531992]
+│   │   │   ├── pid -> pid:[4026531836]
+│   │   │   ├── pid_for_children -> pid:[4026531836]
+│   │   │   ├── user -> user:[4026531837]
+│   │   │   └── uts -> uts:[4026531838]
+│   │   ├── numa_maps
+│   │   ├── oom_adj
+│   │   ├── oom_score
+│   │   ├── oom_score_adj
+│   │   ├── pagemap
+│   │   ├── patch_state
+│   │   ├── personality
+│   │   ├── projid_map
+│   │   ├── root -> /
+│   │   ├── sched
+│   │   ├── schedstat
+│   │   ├── sessionid
+│   │   ├── setgroups
+│   │   ├── smaps
+│   │   ├── smaps_rollup
+│   │   ├── stack
+│   │   ├── stat
+│   │   ├── statm
+│   │   ├── status
+│   │   ├── syscall
+│   │   ├── uid_map
+│   │   └── wchan
+│   ├── 4125
+│   │   ├── attr
+│   │   │   ├── current
+│   │   │   ├── exec
+│   │   │   ├── fscreate
+│   │   │   ├── keycreate
+│   │   │   ├── prev
+│   │   │   └── sockcreate
+│   │   ├── auxv
+│   │   ├── cgroup
+│   │   ├── children
+│   │   ├── clear_refs
+│   │   ├── cmdline
+│   │   ├── comm
+│   │   ├── cpuset
+│   │   ├── cwd -> /root/bin/clash
+│   │   ├── environ
+│   │   ├── exe -> /root/bin/clash/clash-linux-amd64-v1.2.0
+│   │   ├── fd
+│   │   │   ├── 0 -> /dev/pts/5
+│   │   │   ├── 1 -> /dev/pts/5
+│   │   │   ├── 2 -> /dev/pts/5
+│   │   │   ├── 3 -> anon_inode:[eventpoll]
+│   │   │   ├── 4 -> pipe:[21525234]
+│   │   │   ├── 5 -> pipe:[21525234]
+│   │   │   ├── 6 -> socket:[21525235]
+│   │   │   ├── 7 -> socket:[21525236]
+│   │   │   ├── 8 -> socket:[21525240]
+│   │   │   └── 9 -> socket:[21524332]
+│   │   ├── fdinfo
+│   │   │   ├── 0
+│   │   │   ├── 1
+│   │   │   ├── 2
+│   │   │   ├── 3
+│   │   │   ├── 4
+│   │   │   ├── 5
+│   │   │   ├── 6
+│   │   │   ├── 7
+│   │   │   ├── 8
+│   │   │   └── 9
+│   │   ├── gid_map
+│   │   ├── io
+│   │   ├── limits
+│   │   ├── loginuid
+│   │   ├── maps
+│   │   ├── mem
+│   │   ├── mountinfo
+│   │   ├── mounts
+│   │   ├── net
+│   │   │   ├── anycast6
+│   │   │   ├── arp
+│   │   │   ├── connector
+│   │   │   ├── dev
+│   │   │   ├── dev_mcast
+│   │   │   ├── dev_snmp6
+│   │   │   │   ├── eth0
+│   │   │   │   └── lo
+│   │   │   ├── fib_trie
+│   │   │   ├── fib_triestat
+│   │   │   ├── icmp
+│   │   │   ├── icmp6
+│   │   │   ├── if_inet6
+│   │   │   ├── igmp
+│   │   │   ├── igmp6
+│   │   │   ├── ip6_flowlabel
+│   │   │   ├── ip6_mr_cache
+│   │   │   ├── ip6_mr_vif
+│   │   │   ├── ip_mr_cache
+│   │   │   ├── ip_mr_vif
+│   │   │   ├── ip_tables_matches
+│   │   │   ├── ip_tables_names
+│   │   │   ├── ip_tables_targets
+│   │   │   ├── ipv6_route
+│   │   │   ├── mcfilter
+│   │   │   ├── mcfilter6
+│   │   │   ├── netfilter
+│   │   │   │   └── nf_log
+│   │   │   ├── netlink
+│   │   │   ├── netstat
+│   │   │   ├── packet
+│   │   │   ├── protocols
+│   │   │   ├── psched
+│   │   │   ├── ptype
+│   │   │   ├── raw
+│   │   │   ├── raw6
+│   │   │   ├── route
+│   │   │   ├── rt6_stats
+│   │   │   ├── rt_acct
+│   │   │   ├── rt_cache
+│   │   │   ├── snmp
+│   │   │   ├── snmp6
+│   │   │   ├── sockstat
+│   │   │   ├── sockstat6
+│   │   │   ├── softnet_stat
+│   │   │   ├── stat
+│   │   │   │   ├── arp_cache
+│   │   │   │   ├── ndisc_cache
+│   │   │   │   └── rt_cache
+│   │   │   ├── tcp
+│   │   │   ├── tcp6
+│   │   │   ├── udp
+│   │   │   ├── udp6
+│   │   │   ├── udplite
+│   │   │   ├── udplite6
+│   │   │   ├── unix
+│   │   │   └── wireless
+│   │   ├── ns
+│   │   │   ├── cgroup -> cgroup:[4026531835]
+│   │   │   ├── ipc -> ipc:[4026531839]
+│   │   │   ├── mnt -> mnt:[4026531840]
+│   │   │   ├── net -> net:[4026531992]
+│   │   │   ├── pid -> pid:[4026531836]
+│   │   │   ├── pid_for_children -> pid:[4026531836]
+│   │   │   ├── user -> user:[4026531837]
+│   │   │   └── uts -> uts:[4026531838]
+│   │   ├── numa_maps
+│   │   ├── oom_adj
+│   │   ├── oom_score
+│   │   ├── oom_score_adj
+│   │   ├── pagemap
+│   │   ├── patch_state
+│   │   ├── personality
+│   │   ├── projid_map
+│   │   ├── root -> /
+│   │   ├── sched
+│   │   ├── schedstat
+│   │   ├── sessionid
+│   │   ├── setgroups
+│   │   ├── smaps
+│   │   ├── smaps_rollup
+│   │   ├── stack
+│   │   ├── stat
+│   │   ├── statm
+│   │   ├── status
+│   │   ├── syscall
+│   │   ├── uid_map
+│   │   └── wchan
+│   ├── 4126
+│   │   ├── attr
+│   │   │   ├── current
+│   │   │   ├── exec
+│   │   │   ├── fscreate
+│   │   │   ├── keycreate
+│   │   │   ├── prev
+│   │   │   └── sockcreate
+│   │   ├── auxv
+│   │   ├── cgroup
+│   │   ├── children
+│   │   ├── clear_refs
+│   │   ├── cmdline
+│   │   ├── comm
+│   │   ├── cpuset
+│   │   ├── cwd -> /root/bin/clash
+│   │   ├── environ
+│   │   ├── exe -> /root/bin/clash/clash-linux-amd64-v1.2.0
+│   │   ├── fd
+│   │   │   ├── 0 -> /dev/pts/5
+│   │   │   ├── 1 -> /dev/pts/5
+│   │   │   ├── 2 -> /dev/pts/5
+│   │   │   ├── 3 -> anon_inode:[eventpoll]
+│   │   │   ├── 4 -> pipe:[21525234]
+│   │   │   ├── 5 -> pipe:[21525234]
+│   │   │   ├── 6 -> socket:[21525235]
+│   │   │   ├── 7 -> socket:[21525236]
+│   │   │   ├── 8 -> socket:[21525240]
+│   │   │   └── 9 -> socket:[21524332]
+│   │   ├── fdinfo
+│   │   │   ├── 0
+│   │   │   ├── 1
+│   │   │   ├── 2
+│   │   │   ├── 3
+│   │   │   ├── 4
+│   │   │   ├── 5
+│   │   │   ├── 6
+│   │   │   ├── 7
+│   │   │   ├── 8
+│   │   │   └── 9
+│   │   ├── gid_map
+│   │   ├── io
+│   │   ├── limits
+│   │   ├── loginuid
+│   │   ├── maps
+│   │   ├── mem
+│   │   ├── mountinfo
+│   │   ├── mounts
+│   │   ├── net
+│   │   │   ├── anycast6
+│   │   │   ├── arp
+│   │   │   ├── connector
+│   │   │   ├── dev
+│   │   │   ├── dev_mcast
+│   │   │   ├── dev_snmp6
+│   │   │   │   ├── eth0
+│   │   │   │   └── lo
+│   │   │   ├── fib_trie
+│   │   │   ├── fib_triestat
+│   │   │   ├── icmp
+│   │   │   ├── icmp6
+│   │   │   ├── if_inet6
+│   │   │   ├── igmp
+│   │   │   ├── igmp6
+│   │   │   ├── ip6_flowlabel
+│   │   │   ├── ip6_mr_cache
+│   │   │   ├── ip6_mr_vif
+│   │   │   ├── ip_mr_cache
+│   │   │   ├── ip_mr_vif
+│   │   │   ├── ip_tables_matches
+│   │   │   ├── ip_tables_names
+│   │   │   ├── ip_tables_targets
+│   │   │   ├── ipv6_route
+│   │   │   ├── mcfilter
+│   │   │   ├── mcfilter6
+│   │   │   ├── netfilter
+│   │   │   │   └── nf_log
+│   │   │   ├── netlink
+│   │   │   ├── netstat
+│   │   │   ├── packet
+│   │   │   ├── protocols
+│   │   │   ├── psched
+│   │   │   ├── ptype
+│   │   │   ├── raw
+│   │   │   ├── raw6
+│   │   │   ├── route
+│   │   │   ├── rt6_stats
+│   │   │   ├── rt_acct
+│   │   │   ├── rt_cache
+│   │   │   ├── snmp
+│   │   │   ├── snmp6
+│   │   │   ├── sockstat
+│   │   │   ├── sockstat6
+│   │   │   ├── softnet_stat
+│   │   │   ├── stat
+│   │   │   │   ├── arp_cache
+│   │   │   │   ├── ndisc_cache
+│   │   │   │   └── rt_cache
+│   │   │   ├── tcp
+│   │   │   ├── tcp6
+│   │   │   ├── udp
+│   │   │   ├── udp6
+│   │   │   ├── udplite
+│   │   │   ├── udplite6
+│   │   │   ├── unix
+│   │   │   └── wireless
+│   │   ├── ns
+│   │   │   ├── cgroup -> cgroup:[4026531835]
+│   │   │   ├── ipc -> ipc:[4026531839]
+│   │   │   ├── mnt -> mnt:[4026531840]
+│   │   │   ├── net -> net:[4026531992]
+│   │   │   ├── pid -> pid:[4026531836]
+│   │   │   ├── pid_for_children -> pid:[4026531836]
+│   │   │   ├── user -> user:[4026531837]
+│   │   │   └── uts -> uts:[4026531838]
+│   │   ├── numa_maps
+│   │   ├── oom_adj
+│   │   ├── oom_score
+│   │   ├── oom_score_adj
+│   │   ├── pagemap
+│   │   ├── patch_state
+│   │   ├── personality
+│   │   ├── projid_map
+│   │   ├── root -> /
+│   │   ├── sched
+│   │   ├── schedstat
+│   │   ├── sessionid
+│   │   ├── setgroups
+│   │   ├── smaps
+│   │   ├── smaps_rollup
+│   │   ├── stack
+│   │   ├── stat
+│   │   ├── statm
+│   │   ├── status
+│   │   ├── syscall
+│   │   ├── uid_map
+│   │   └── wchan
+│   ├── 4127
+│   │   ├── attr
+│   │   │   ├── current
+│   │   │   ├── exec
+│   │   │   ├── fscreate
+│   │   │   ├── keycreate
+│   │   │   ├── prev
+│   │   │   └── sockcreate
+│   │   ├── auxv
+│   │   ├── cgroup
+│   │   ├── children
+│   │   ├── clear_refs
+│   │   ├── cmdline
+│   │   ├── comm
+│   │   ├── cpuset
+│   │   ├── cwd -> /root/bin/clash
+│   │   ├── environ
+│   │   ├── exe -> /root/bin/clash/clash-linux-amd64-v1.2.0
+│   │   ├── fd
+│   │   │   ├── 0 -> /dev/pts/5
+│   │   │   ├── 1 -> /dev/pts/5
+│   │   │   ├── 2 -> /dev/pts/5
+│   │   │   ├── 3 -> anon_inode:[eventpoll]
+│   │   │   ├── 4 -> pipe:[21525234]
+│   │   │   ├── 5 -> pipe:[21525234]
+│   │   │   ├── 6 -> socket:[21525235]
+│   │   │   ├── 7 -> socket:[21525236]
+│   │   │   ├── 8 -> socket:[21525240]
+│   │   │   └── 9 -> socket:[21524332]
+│   │   ├── fdinfo
+│   │   │   ├── 0
+│   │   │   ├── 1
+│   │   │   ├── 2
+│   │   │   ├── 3
+│   │   │   ├── 4
+│   │   │   ├── 5
+│   │   │   ├── 6
+│   │   │   ├── 7
+│   │   │   ├── 8
+│   │   │   └── 9
+│   │   ├── gid_map
+│   │   ├── io
+│   │   ├── limits
+│   │   ├── loginuid
+│   │   ├── maps
+│   │   ├── mem
+│   │   ├── mountinfo
+│   │   ├── mounts
+│   │   ├── net
+│   │   │   ├── anycast6
+│   │   │   ├── arp
+│   │   │   ├── connector
+│   │   │   ├── dev
+│   │   │   ├── dev_mcast
+│   │   │   ├── dev_snmp6
+│   │   │   │   ├── eth0
+│   │   │   │   └── lo
+│   │   │   ├── fib_trie
+│   │   │   ├── fib_triestat
+│   │   │   ├── icmp
+│   │   │   ├── icmp6
+│   │   │   ├── if_inet6
+│   │   │   ├── igmp
+│   │   │   ├── igmp6
+│   │   │   ├── ip6_flowlabel
+│   │   │   ├── ip6_mr_cache
+│   │   │   ├── ip6_mr_vif
+│   │   │   ├── ip_mr_cache
+│   │   │   ├── ip_mr_vif
+│   │   │   ├── ip_tables_matches
+│   │   │   ├── ip_tables_names
+│   │   │   ├── ip_tables_targets
+│   │   │   ├── ipv6_route
+│   │   │   ├── mcfilter
+│   │   │   ├── mcfilter6
+│   │   │   ├── netfilter
+│   │   │   │   └── nf_log
+│   │   │   ├── netlink
+│   │   │   ├── netstat
+│   │   │   ├── packet
+│   │   │   ├── protocols
+│   │   │   ├── psched
+│   │   │   ├── ptype
+│   │   │   ├── raw
+│   │   │   ├── raw6
+│   │   │   ├── route
+│   │   │   ├── rt6_stats
+│   │   │   ├── rt_acct
+│   │   │   ├── rt_cache
+│   │   │   ├── snmp
+│   │   │   ├── snmp6
+│   │   │   ├── sockstat
+│   │   │   ├── sockstat6
+│   │   │   ├── softnet_stat
+│   │   │   ├── stat
+│   │   │   │   ├── arp_cache
+│   │   │   │   ├── ndisc_cache
+│   │   │   │   └── rt_cache
+│   │   │   ├── tcp
+│   │   │   ├── tcp6
+│   │   │   ├── udp
+│   │   │   ├── udp6
+│   │   │   ├── udplite
+│   │   │   ├── udplite6
+│   │   │   ├── unix
+│   │   │   └── wireless
+│   │   ├── ns
+│   │   │   ├── cgroup -> cgroup:[4026531835]
+│   │   │   ├── ipc -> ipc:[4026531839]
+│   │   │   ├── mnt -> mnt:[4026531840]
+│   │   │   ├── net -> net:[4026531992]
+│   │   │   ├── pid -> pid:[4026531836]
+│   │   │   ├── pid_for_children -> pid:[4026531836]
+│   │   │   ├── user -> user:[4026531837]
+│   │   │   └── uts -> uts:[4026531838]
+│   │   ├── numa_maps
+│   │   ├── oom_adj
+│   │   ├── oom_score
+│   │   ├── oom_score_adj
+│   │   ├── pagemap
+│   │   ├── patch_state
+│   │   ├── personality
+│   │   ├── projid_map
+│   │   ├── root -> /
+│   │   ├── sched
+│   │   ├── schedstat
+│   │   ├── sessionid
+│   │   ├── setgroups
+│   │   ├── smaps
+│   │   ├── smaps_rollup
+│   │   ├── stack
+│   │   ├── stat
+│   │   ├── statm
+│   │   ├── status
+│   │   ├── syscall
+│   │   ├── uid_map
+│   │   └── wchan
+│   ├── 4128
+│   │   ├── attr
+│   │   │   ├── current
+│   │   │   ├── exec
+│   │   │   ├── fscreate
+│   │   │   ├── keycreate
+│   │   │   ├── prev
+│   │   │   └── sockcreate
+│   │   ├── auxv
+│   │   ├── cgroup
+│   │   ├── children
+│   │   ├── clear_refs
+│   │   ├── cmdline
+│   │   ├── comm
+│   │   ├── cpuset
+│   │   ├── cwd -> /root/bin/clash
+│   │   ├── environ
+│   │   ├── exe -> /root/bin/clash/clash-linux-amd64-v1.2.0
+│   │   ├── fd
+│   │   │   ├── 0 -> /dev/pts/5
+│   │   │   ├── 1 -> /dev/pts/5
+│   │   │   ├── 2 -> /dev/pts/5
+│   │   │   ├── 3 -> anon_inode:[eventpoll]
+│   │   │   ├── 4 -> pipe:[21525234]
+│   │   │   ├── 5 -> pipe:[21525234]
+│   │   │   ├── 6 -> socket:[21525235]
+│   │   │   ├── 7 -> socket:[21525236]
+│   │   │   ├── 8 -> socket:[21525240]
+│   │   │   └── 9 -> socket:[21524332]
+│   │   ├── fdinfo
+│   │   │   ├── 0
+│   │   │   ├── 1
+│   │   │   ├── 2
+│   │   │   ├── 3
+│   │   │   ├── 4
+│   │   │   ├── 5
+│   │   │   ├── 6
+│   │   │   ├── 7
+│   │   │   ├── 8
+│   │   │   └── 9
+│   │   ├── gid_map
+│   │   ├── io
+│   │   ├── limits
+│   │   ├── loginuid
+│   │   ├── maps
+│   │   ├── mem
+│   │   ├── mountinfo
+│   │   ├── mounts
+│   │   ├── net
+│   │   │   ├── anycast6
+│   │   │   ├── arp
+│   │   │   ├── connector
+│   │   │   ├── dev
+│   │   │   ├── dev_mcast
+│   │   │   ├── dev_snmp6
+│   │   │   │   ├── eth0
+│   │   │   │   └── lo
+│   │   │   ├── fib_trie
+│   │   │   ├── fib_triestat
+│   │   │   ├── icmp
+│   │   │   ├── icmp6
+│   │   │   ├── if_inet6
+│   │   │   ├── igmp
+│   │   │   ├── igmp6
+│   │   │   ├── ip6_flowlabel
+│   │   │   ├── ip6_mr_cache
+│   │   │   ├── ip6_mr_vif
+│   │   │   ├── ip_mr_cache
+│   │   │   ├── ip_mr_vif
+│   │   │   ├── ip_tables_matches
+│   │   │   ├── ip_tables_names
+│   │   │   ├── ip_tables_targets
+│   │   │   ├── ipv6_route
+│   │   │   ├── mcfilter
+│   │   │   ├── mcfilter6
+│   │   │   ├── netfilter
+│   │   │   │   └── nf_log
+│   │   │   ├── netlink
+│   │   │   ├── netstat
+│   │   │   ├── packet
+│   │   │   ├── protocols
+│   │   │   ├── psched
+│   │   │   ├── ptype
+│   │   │   ├── raw
+│   │   │   ├── raw6
+│   │   │   ├── route
+│   │   │   ├── rt6_stats
+│   │   │   ├── rt_acct
+│   │   │   ├── rt_cache
+│   │   │   ├── snmp
+│   │   │   ├── snmp6
+│   │   │   ├── sockstat
+│   │   │   ├── sockstat6
+│   │   │   ├── softnet_stat
+│   │   │   ├── stat
+│   │   │   │   ├── arp_cache
+│   │   │   │   ├── ndisc_cache
+│   │   │   │   └── rt_cache
+│   │   │   ├── tcp
+│   │   │   ├── tcp6
+│   │   │   ├── udp
+│   │   │   ├── udp6
+│   │   │   ├── udplite
+│   │   │   ├── udplite6
+│   │   │   ├── unix
+│   │   │   └── wireless
+│   │   ├── ns
+│   │   │   ├── cgroup -> cgroup:[4026531835]
+│   │   │   ├── ipc -> ipc:[4026531839]
+│   │   │   ├── mnt -> mnt:[4026531840]
+│   │   │   ├── net -> net:[4026531992]
+│   │   │   ├── pid -> pid:[4026531836]
+│   │   │   ├── pid_for_children -> pid:[4026531836]
+│   │   │   ├── user -> user:[4026531837]
+│   │   │   └── uts -> uts:[4026531838]
+│   │   ├── numa_maps
+│   │   ├── oom_adj
+│   │   ├── oom_score
+│   │   ├── oom_score_adj
+│   │   ├── pagemap
+│   │   ├── patch_state
+│   │   ├── personality
+│   │   ├── projid_map
+│   │   ├── root -> /
+│   │   ├── sched
+│   │   ├── schedstat
+│   │   ├── sessionid
+│   │   ├── setgroups
+│   │   ├── smaps
+│   │   ├── smaps_rollup
+│   │   ├── stack
+│   │   ├── stat
+│   │   ├── statm
+│   │   ├── status
+│   │   ├── syscall
+│   │   ├── uid_map
+│   │   └── wchan
+│   └── 4431
+│       ├── attr
+│       │   ├── current
+│       │   ├── exec
+│       │   ├── fscreate
+│       │   ├── keycreate
+│       │   ├── prev
+│       │   └── sockcreate
+│       ├── auxv
+│       ├── cgroup
+│       ├── children
+│       ├── clear_refs
+│       ├── cmdline
+│       ├── comm
+│       ├── cpuset
+│       ├── cwd -> /root/bin/clash
+│       ├── environ
+│       ├── exe -> /root/bin/clash/clash-linux-amd64-v1.2.0
+│       ├── fd
+│       │   ├── 0 -> /dev/pts/5
+│       │   ├── 1 -> /dev/pts/5
+│       │   ├── 2 -> /dev/pts/5
+│       │   ├── 3 -> anon_inode:[eventpoll]
+│       │   ├── 4 -> pipe:[21525234]
+│       │   ├── 5 -> pipe:[21525234]
+│       │   ├── 6 -> socket:[21525235]
+│       │   ├── 7 -> socket:[21525236]
+│       │   ├── 8 -> socket:[21525240]
+│       │   └── 9 -> socket:[21524332]
+│       ├── fdinfo
+│       │   ├── 0
+│       │   ├── 1
+│       │   ├── 2
+│       │   ├── 3
+│       │   ├── 4
+│       │   ├── 5
+│       │   ├── 6
+│       │   ├── 7
+│       │   ├── 8
+│       │   └── 9
+│       ├── gid_map
+│       ├── io
+│       ├── limits
+│       ├── loginuid
+│       ├── maps
+│       ├── mem
+│       ├── mountinfo
+│       ├── mounts
+│       ├── net
+│       │   ├── anycast6
+│       │   ├── arp
+│       │   ├── connector
+│       │   ├── dev
+│       │   ├── dev_mcast
+│       │   ├── dev_snmp6
+│       │   │   ├── eth0
+│       │   │   └── lo
+│       │   ├── fib_trie
+│       │   ├── fib_triestat
+│       │   ├── icmp
+│       │   ├── icmp6
+│       │   ├── if_inet6
+│       │   ├── igmp
+│       │   ├── igmp6
+│       │   ├── ip6_flowlabel
+│       │   ├── ip6_mr_cache
+│       │   ├── ip6_mr_vif
+│       │   ├── ip_mr_cache
+│       │   ├── ip_mr_vif
+│       │   ├── ip_tables_matches
+│       │   ├── ip_tables_names
+│       │   ├── ip_tables_targets
+│       │   ├── ipv6_route
+│       │   ├── mcfilter
+│       │   ├── mcfilter6
+│       │   ├── netfilter
+│       │   │   └── nf_log
+│       │   ├── netlink
+│       │   ├── netstat
+│       │   ├── packet
+│       │   ├── protocols
+│       │   ├── psched
+│       │   ├── ptype
+│       │   ├── raw
+│       │   ├── raw6
+│       │   ├── route
+│       │   ├── rt6_stats
+│       │   ├── rt_acct
+│       │   ├── rt_cache
+│       │   ├── snmp
+│       │   ├── snmp6
+│       │   ├── sockstat
+│       │   ├── sockstat6
+│       │   ├── softnet_stat
+│       │   ├── stat
+│       │   │   ├── arp_cache
+│       │   │   ├── ndisc_cache
+│       │   │   └── rt_cache
+│       │   ├── tcp
+│       │   ├── tcp6
+│       │   ├── udp
+│       │   ├── udp6
+│       │   ├── udplite
+│       │   ├── udplite6
+│       │   ├── unix
+│       │   └── wireless
+│       ├── ns
+│       │   ├── cgroup -> cgroup:[4026531835]
+│       │   ├── ipc -> ipc:[4026531839]
+│       │   ├── mnt -> mnt:[4026531840]
+│       │   ├── net -> net:[4026531992]
+│       │   ├── pid -> pid:[4026531836]
+│       │   ├── pid_for_children -> pid:[4026531836]
+│       │   ├── user -> user:[4026531837]
+│       │   └── uts -> uts:[4026531838]
+│       ├── numa_maps
+│       ├── oom_adj
+│       ├── oom_score
+│       ├── oom_score_adj
+│       ├── pagemap
+│       ├── patch_state
+│       ├── personality
+│       ├── projid_map
+│       ├── root -> /
+│       ├── sched
+│       ├── schedstat
+│       ├── sessionid
+│       ├── setgroups
+│       ├── smaps
+│       ├── smaps_rollup
+│       ├── stack
+│       ├── stat
+│       ├── statm
+│       ├── status
+│       ├── syscall
+│       ├── uid_map
+│       └── wchan
+├── timers
+├── timerslack_ns
+├── uid_map
+└── wchan
+
+111 directories, 1267 files
