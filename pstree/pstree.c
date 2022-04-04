@@ -106,7 +106,7 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
     fgets(file_data, 1024, fp);
     printf("file_data :%s\n", file_data);
     fscanf(fp, "%s(%s)%s%s", cur_pid_char, name, running_state, ppid_char);
-    printf("pid %s, name %s, running_state %s, ppid_char %s", cur_pid_char, name, running_state, ppid_char);
+    printf("xxxpid %s, name %s, running_state %s, ppid_char %s\n", cur_pid_char, name, running_state, ppid_char);
     if (fscanf(fp, "%d(%s)%s%d", &cur_pid, name, running_state, &ppid) != EOF){
       // consturct the value; 
       strncpy(pid_info_list[index].name, name, 512);
