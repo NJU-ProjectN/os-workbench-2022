@@ -243,6 +243,7 @@ int main(int argc, char *argv[]) {
     printf("construct_tree failed");
     return -1;
   }
+  printf("pid_tree %p", pid_tree);
 
   // print the tree in bfs;
   error_code = print_tree(pid_tree, 0, 0);
