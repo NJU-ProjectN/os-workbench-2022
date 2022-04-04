@@ -148,7 +148,7 @@ int construct_tree(struct pid_info *pid_info_list_i, int pid_num_i, struct pid_i
   struct pid_info *pid_root = NULL;
   for (int i = 0; i < pid_num_i; i++){
     if (pid_info_list_i[i].ppid == 0) {
-      pid_root = pid_info_list_i + i;
+      pid_root = &pid_info_list_i[i];
     }
   }
   if (pid_root == NULL) {
