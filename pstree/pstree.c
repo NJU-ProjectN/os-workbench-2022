@@ -116,7 +116,16 @@ int get_pid_list(struct pid_info **pid_info_list_o, int *pid_num_o){
   return 0;
 }
 
-int append_child_node(struct pid_info *pid_info_list_i, int pid_num_i, int ppid_i, struct pid_info*** children, int*children_num){
+int compare(const void* a, const void* b) {
+  struct pid_info * info_a = (struct pid_info *)a;
+  struct pid_info * info_b = (struct pid_info *)b;
+  if (info_a != NULL && info_b != NULL) {
+    return info_a->pid < info_b->pid;
+  }
+  return 0;
+}
+
+int append_child_node(struct pid_info *pid_info_list_i, int pid_num_i, int ppid_i, struct pid_info*** children, int*children_num, int need_sort){
   int child_num = 0;
   for(int i = 0; i< pid_num_i; i++){
    if (pid_info_list_i[i].ppid == ppid_i) {
@@ -134,17 +143,21 @@ int append_child_node(struct pid_info *pid_info_list_i, int pid_num_i, int ppid_
      j++;
    } 
   }
+  if (need_sort != 0) {
+    qsort(pid_info_list, child_num, sizeof(struct pid_info*), compare);
+  }
+
   *children = pid_info_list;
   *children_num = child_num;  
 
   for (int i = 0; i < child_num; i++) {
-    append_child_node(pid_info_list_i, pid_num_i, pid_info_list[i]->pid, &pid_info_list[i]->children, &pid_info_list[i]->children_num);
+    append_child_node(pid_info_list_i, pid_num_i, pid_info_list[i]->pid, &pid_info_list[i]->children, &pid_info_list[i]->children_num, need_sort);
   }
 
   return 0;
 }
 
-int construct_tree(struct pid_info *pid_info_list_i, int pid_num_i, struct pid_info **pid_tree){
+int construct_tree(struct pid_info *pid_info_list_i, int pid_num_i, struct pid_info **pid_tree, int need_sort){
   // find the root;
   printf("1");
   struct pid_info *pid_root = NULL;
@@ -162,7 +175,7 @@ int construct_tree(struct pid_info *pid_info_list_i, int pid_num_i, struct pid_i
   }
   printf("3\n");
 
-  int error_code = append_child_node(pid_info_list_i, pid_num_i, pid_root->pid, &pid_root->children, &pid_root->children_num);
+  int error_code = append_child_node(pid_info_list_i, pid_num_i, pid_root->pid, &pid_root->children, &pid_root->children_num, need_sort);
   printf("4\n");
   if (error_code) {
     printf("construct_tree failed, error_code %d", error_code);
@@ -182,6 +195,27 @@ systemd(1)-+-systemd-journal(249)
            |               `-{rsyslogd}(613)
            |-cron(605)
 */
+/*int print_tree2(struct pid_info *pid_tree, char*** list, int* line_num) {
+  if (pid_tree == NULL) {
+    return 0;
+  }
+  if (pid_tree->children_num == 0) {
+    char**list_local = (char**)malloc(sizeof(char*));
+    list_local[0] = pid_tree->name;
+    *list = list_local;
+    *line_num = 1;
+    return 0;
+  }
+  for (int i = 0, j = 0; i < pid_tree->children_num; i++){
+    char**list_local = (char**)malloc(sizeof(char*)*pid_tree->children_num);
+    if (i == 0) {
+      char *buffer = (char*)malloc(sizeof(char)*1024);
+      list_local[j++] = sprintf(buffer, "%s(%d)-+-", pid_tree->name, pid_tree->pid, )
+    }
+  }
+  
+}*/
+
 int print_tree(struct pid_info *pid_tree, int space_num, int need_back_track, char* prefix){
   if (pid_tree == NULL) {
     //printf("nil pid tree");
@@ -247,7 +281,7 @@ int main(int argc, char *argv[]) {
   printf("pid_list %p, pid_num %d\n", pid_info_list, pid_num);
   // construct tree, find the root of each pid, and construt the tree;
   struct pid_info* pid_tree;
-  error_code = construct_tree(pid_info_list, pid_num, &pid_tree);
+  error_code = construct_tree(pid_info_list, pid_num, &pid_tree, args.numeric_sort);
   if(error_code != 0){
     printf("construct_tree failed");
     return -1;
