@@ -120,7 +120,6 @@ int compare(const void* a, const void* b) {
   struct pid_info ** info_a = (struct pid_info **)a;
   struct pid_info ** info_b = (struct pid_info **)b;
   if (info_a != NULL && info_b != NULL) {
-    printf("a %d b %d\n", (*info_a)->pid, (*info_b)->pid);
     return (*info_a)->pid - (*info_b)->pid;
   }
   return 0;
@@ -133,7 +132,6 @@ int append_child_node(struct pid_info *pid_info_list_i, int pid_num_i, int ppid_
      child_num++;
    } 
   }
-  printf("5 child_num %d\n", child_num);
   if (child_num == 0) {
     return 0;
   }
@@ -145,7 +143,6 @@ int append_child_node(struct pid_info *pid_info_list_i, int pid_num_i, int ppid_
    } 
   }
   if (need_sort != 0) {
-    printf("sorted\n");
     qsort(pid_info_list, child_num, sizeof(struct pid_info*), compare);
   }
 
@@ -161,7 +158,6 @@ int append_child_node(struct pid_info *pid_info_list_i, int pid_num_i, int ppid_
 
 int construct_tree(struct pid_info *pid_info_list_i, int pid_num_i, struct pid_info **pid_tree, int need_sort){
   // find the root;
-  printf("1");
   struct pid_info *pid_root = NULL;
   for (int i = 0; i < pid_num_i; i++){
     if (pid_info_list_i[i].ppid == 0) {
@@ -169,16 +165,12 @@ int construct_tree(struct pid_info *pid_info_list_i, int pid_num_i, struct pid_i
       break;
     }
   }
-  printf("pid_root %p, name %s\n", pid_root, pid_root->name);
-  printf("2\n");
   if (pid_root == NULL) {
     printf("construct_tree failed");
     return -1;
   }
-  printf("3\n");
 
   int error_code = append_child_node(pid_info_list_i, pid_num_i, pid_root->pid, &pid_root->children, &pid_root->children_num, need_sort);
-  printf("4\n");
   if (error_code) {
     printf("construct_tree failed, error_code %d", error_code);
     return -1;
@@ -187,6 +179,7 @@ int construct_tree(struct pid_info *pid_info_list_i, int pid_num_i, struct pid_i
   *pid_tree = pid_root;
   return 0;
 }
+
 /*
 systemd(1)-+-systemd-journal(249)
            |-systemd-udevd(267)
@@ -220,7 +213,7 @@ systemd(1)-+-systemd-journal(249)
 
 int print_tree(struct pid_info *pid_tree, int space_num, int need_back_track, char* prefix){
   if (pid_tree == NULL) {
-    //printf("nil pid tree");
+    printf("nil pid tree");
     return -1;
   }
   for (int i = 0; i < space_num; i++) {
@@ -228,7 +221,6 @@ int print_tree(struct pid_info *pid_tree, int space_num, int need_back_track, ch
       printf(" ");
     }
   }
-  //printf("%s%s(%d)", prefix, pid_tree->name, pid_tree->pid);
   char string_buffer[1024];
   sprintf(string_buffer, "%s%s(%d)", prefix, pid_tree->name, pid_tree->pid);
   printf("%s", string_buffer);
