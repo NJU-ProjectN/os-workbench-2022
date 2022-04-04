@@ -234,6 +234,7 @@ int main(int argc, char *argv[]) {
     printf("get_pid_list failed");
     return -1;
   }
+  printf("pid_list %p, pid_num %d\n", pid_info_list, pid_num);
   // construct tree, find the root of each pid, and construt the tree;
   struct pid_info* pid_tree;
   error_code = construct_tree(pid_info_list, pid_num, &pid_tree);
