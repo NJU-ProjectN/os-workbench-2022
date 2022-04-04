@@ -117,11 +117,11 @@ int get_pid_list(struct pid_info **pid_info_list_o, int *pid_num_o){
 }
 
 int compare(const void* a, const void* b) {
-  struct pid_info * info_a = (struct pid_info *)a;
-  struct pid_info * info_b = (struct pid_info *)b;
+  struct pid_info ** info_a = (struct pid_info **)a;
+  struct pid_info ** info_b = (struct pid_info **)b;
   if (info_a != NULL && info_b != NULL) {
-    printf("a %d b %d\n", info_a->pid, info_b->pid);
-    return info_a->pid - info_b->pid;
+    printf("a %d b %d\n", (*info_a)->pid, (*info_b)->pid);
+    return (*info_a)->pid - (*info_b)->pid;
   }
   return 0;
 }
