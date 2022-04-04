@@ -71,6 +71,7 @@ int get_pid_list(int **pid_o, int *pid_num_o){
         printf("ignore error file %s", dir->d_name);
       }
       pid_array[index++] = pid;
+      printf("pid get %d", pid);
     }
   }
   *pid_o = pid_array; 
