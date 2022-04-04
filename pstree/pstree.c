@@ -57,60 +57,61 @@ struct pid_info {
 };
 
 int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o){
-  DIR *d = opendir("/proc");
+  const char* dir_path = "/proc";
+  DIR *d = opendir(dir_path);
   int pid_num = 0;
-  if (d) {
-    while (readdir(d) != NULL){
-      pid_num++;
-    }
+  if (!d) {
+    printf("opendir failed, dir path %s", dir_path);
+    return -1;
+  }
+  while (readdir(d) != NULL){
+    pid_num++;
   }
   if (d) {
     free(d);
+    d = NULL;
   }
   if (pid_num == 0) {
+    printf("get nil pid_num");
     return -1;
   }
-  int* pid_array = (int*)malloc(sizeof(int)*pid_num);
+  d = opendir("/proc");
+  if (!d) {
+    printf("opendir again failed, dir path %s", dir_path);
+    return -1;
+  }
   struct pid_info* pid_info_list = (struct pid_info*)malloc(sizeof(struct pid_info)* pid_num);
   int index = 0;
-  d = opendir("/proc");
   struct dirent *dir;
-  if(d) {
-    while ((dir = readdir(d)) != NULL){
-      int pid = atoi(dir->d_name);
-      if (pid <= 0) {
-        char file_path[512];
-        sprintf(file_path, "/proc/%s/stat", dir->d_name);
-        FILE *fp = fopen(file_path, "r");
-        if (fp) {
-          int pid;
-          char name[512];
-          char running_state[512];
-          int ppid;
-          char file_data[512];
-          if (fscanf(fp, "%d (%s) %s %d", &pid, name, running_state, &ppid) != EOF){
-           // consturct the value; 
-           strncpy(pid_info_list[index].name, name, 512);
-           pid_info_list[index].pid = pid;
-           pid_info_list[index].ppid = ppid;
-           pid_info_list[index].next = NULL;
-           index++;
-          } else {
-            printf("error read from file failed, file_name /proc/%s\n", dir->d_name);
-            continue;
-          }
-          fclose(fp);
-        } else {
-          printf("read pid file failed, file_name /proc/%s\n", dir->d_name);
-          return -1;
-        }
-        // construct the value;
-        continue;
-      }
-      pid_array[index++] = pid;
+  while ((dir = readdir(d)) != NULL){
+    int pid = atoi(dir->d_name);
+    if (pid <= 0) {
+      printf("skip for not legal pid, name %s", dir->d_name);
+      continue;
     }
+    char file_path[512];
+    sprintf(file_path, "/proc/%s/stat", dir->d_name);
+    FILE *fp = fopen(file_path, "r");
+    if (fp == NULL) {
+      printf("read pid file failed, file_name /proc/%s\n", dir->d_name);
+      return -1;
+    }
+    int cur_pid;
+    char name[512];
+    char running_state[512];
+    int ppid;
+    char file_data[512];
+    if (fscanf(fp, "%d (%s) %s %d", &cur_pid, name, running_state, &ppid) != EOF){
+      // consturct the value; 
+      strncpy(pid_info_list[index].name, name, 512);
+      pid_info_list[index].pid = cur_pid;
+      pid_info_list[index].ppid = ppid;
+      pid_info_list[index].next = NULL;
+      index++; 
+      printf("name %s, pid %d, ppid %d, next %p", pid_info_list[index].name, pid_info_list[index].pid, pid_info_list[index].ppid, pid_info_list[index].next);
+    }
+    fclose(fp);
   }
-  *pid_o = pid_array; 
   *pid_num_o = pid_num;
   return 0;
 }
