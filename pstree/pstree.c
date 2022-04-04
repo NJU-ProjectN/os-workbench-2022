@@ -155,7 +155,14 @@ int construct_tree(struct pid_info *pid_info_list_i, int pid_num_i, struct pid_i
     return -1;
   }
 
-  return append_child_node(pid_info_list_i, pid_num_i, pid_root->pid, &pid_root->children, &pid_root->children_num);
+  int error_code = append_child_node(pid_info_list_i, pid_num_i, pid_root->pid, &pid_root->children, &pid_root->children_num);
+  if (error_code) {
+    printf("construct_tree failed, error_code %d", error_code);
+    return -1;
+  }
+
+  *pid_tree = pid_root;
+  return 0;
 }
 /*
 systemd(1)-+-systemd-journal(249)
