@@ -192,23 +192,26 @@ int print_tree(struct pid_info *pid_tree, int space_num, int need_back_track, ch
       printf(" ");
     }
   }
-  printf("%s%s(%d)", prefix, pid_tree->name, pid_tree->pid);
+  //printf("%s%s(%d)", prefix, pid_tree->name, pid_tree->pid);
+  char string_buffer[1024];
+  sprintf(string_buffer, "%s%s(%d)", prefix, pid_tree->name, pid_tree->pid);
+  printf("%s", string_buffer);
   if (pid_tree->children_num == 0) {
     return 0;
   }
   for(int i = 0; i < pid_tree->children_num; i++){
     if (i == 0) {
       //printf("");
-      print_tree(pid_tree->children[i], space_num+strlen(pid_tree->name)+1, 0, "-+-");
+      print_tree(pid_tree->children[i], space_num+strlen(string_buffer)+1, 0, "-+-");
       continue;
     }
     if (i == pid_tree->children_num - 1) {
       printf("\n");
-      print_tree(pid_tree->children[i], space_num+strlen(pid_tree->name)+1, 1, "`-");
+      print_tree(pid_tree->children[i], space_num+strlen(string_buffer)+1, 1, "`-");
       continue;
     }
     printf("\n");
-    print_tree(pid_tree->children[i], space_num+strlen(pid_tree->name)+1, 1, "|-");
+    print_tree(pid_tree->children[i], space_num+strlen(string_buffer)+1, 1, "|-");
   }
   return 0;
 }
