@@ -96,11 +96,8 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
       printf("read pid file failed, file_name /proc/%s\n", dir->d_name);
       return -1;
     }
-    /*char cur_pid_char[128], name[512], running_state[32], ppid_char[128];
-    if (fscanf(fp, "%s%s%s%s", cur_pid_char, name, running_state, ppid_char) != EOF){*/
     char name[512], running_state[32];
-    int cur_pid;
-    int ppid;
+    int cur_pid, ppid;
     if (fscanf(fp, "%d%s%s%d", &cur_pid, name, running_state, &ppid) != EOF){
       // consturct the value; 
       strncpy(pid_info_list[index].name, name, 512);
@@ -113,7 +110,7 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
         pid_info_list[index].pid, 
         pid_info_list[index].ppid, 
         pid_info_list[index].next);
-      index++; 
+      index++;
     }
     fclose(fp);
   }
