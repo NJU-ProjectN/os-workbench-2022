@@ -17,7 +17,7 @@ void print_args(int argc, char *argv[]){
 }
 
 int process_args(int argc, char *argv[], struct Args *args){
-  for (int i = 0; i < argc; i++) {
+  for (int i = 1; i < argc; i++) {
     char* argv_i = argv[i];
     if (strcmp("-p", argv_i) == 0 || strcmp("--show-pids", argv_i) == 0){
       args->show_pids = 1;
@@ -26,7 +26,7 @@ int process_args(int argc, char *argv[], struct Args *args){
     } else if (strcmp("-V", argv_i) == 0 || strcmp("--version", argv_i) == 0) {
       args->version = 1;
     } else {
-      printf("invalid option -- '%s'", argv_i);
+      printf("invalid option -- '%s'\n", argv_i);
       return -1;
     }
   }
