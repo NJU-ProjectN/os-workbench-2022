@@ -86,7 +86,7 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
   while ((dir = readdir(d)) != NULL){
     int pid = atoi(dir->d_name);
     if (pid <= 0) {
-      printf("skip for not legal pid, name %s", dir->d_name);
+      printf("skip for not legal pid, name %s\n", dir->d_name);
       continue;
     }
     char file_path[512];
