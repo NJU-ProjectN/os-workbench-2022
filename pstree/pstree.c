@@ -55,7 +55,7 @@ int get_pid_list(int **pid_o, int *pid_num_o){
   d = opendir("/proc");
   int pid_num = 0;
   if(d) {
-    while ((dir = readdir(d)) != NULL && dir->d_type == DT_REG){
+    while ((dir = readdir(d)) != NULL){
       pid_num++;
     }
   }
@@ -65,7 +65,7 @@ int get_pid_list(int **pid_o, int *pid_num_o){
   int* pid_array = (int*)malloc(sizeof(int)*pid_num);
   int index = 0;
   if(d) {
-    while ((dir = readdir(d)) != NULL && dir->d_type == DT_REG){
+    while ((dir = readdir(d)) != NULL){
       int pid = atoi(dir->d_name);
       if (pid < 0) {
         printf("ignore error file %s", dir->d_name);
