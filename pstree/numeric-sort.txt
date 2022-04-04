@@ -1,0 +1,28 @@
+systemd-+-systemd-journal
+        |-systemd-udevd
+        |-dhclient
+        |-dbus-daemon
+        |-rsyslogd---3*[{rsyslogd}]
+        |-cron
+        |-chronyd---chronyd
+        |-systemd-logind
+        |-watchdog.sh---sleep
+        |-tat_agent---4*[{tat_agent}]
+        |-secu-tcs-agent
+        |-2*[agetty]
+        |-sshd---sshd---bash---bash
+        |-sgagent---{sgagent}
+        |-barad_agent-+-barad_agent
+        |             `-barad_agent---3*[{barad_agent}]
+        |-tmux: server---bash---clash-linux-amd---8*[{clash-linux-amd}]
+        |-systemd---(sd-pam)
+        `-sh---node-+-10*[{node}]
+                    |-node-+-bash---zsh---pstree
+                    |      |-12*[{node}]
+                    |      `-bash
+                    |-node---10*[{node}]
+                    |-node-+-11*[{node}]
+                    |      |-node---6*[{node}]
+                    |      `-cpptools-+-23*[{cpptools}]
+                    |                 `-cpptools-srv---11*[{cpptools-srv}]
+                    `-node---12*[{node}]
