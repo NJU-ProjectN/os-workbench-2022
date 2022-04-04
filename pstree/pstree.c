@@ -196,6 +196,7 @@ int print_tree(struct pid_info *pid_tree, int space_num, int need_back_track){
     printf("|-");
     print_tree(pid_tree->children[i], space_num+sizeof(pid_tree->name)+1, 1);
   }
+  return 0;
 }
 
 int main(int argc, char *argv[]) {
