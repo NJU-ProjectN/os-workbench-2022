@@ -100,7 +100,13 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
     char name[512];
     char running_state[512];
     int ppid;
-    char file_data[512];
+    char file_data[1024];
+    int byte_read = fgets(file_data, 1024, fp);
+    if (byte_read == 0) {
+      printf("read from file failed, file_name %s\n", file_path);
+      return -1;
+    }
+    printf("file_data :%s\n", file_data);
     if (fscanf(fp, "%d(%s)%s%d", &cur_pid, name, running_state, &ppid) != EOF){
       // consturct the value; 
       strncpy(pid_info_list[index].name, name, 512);
