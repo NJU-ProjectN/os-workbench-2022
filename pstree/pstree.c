@@ -150,6 +150,7 @@ int construct_tree(struct pid_info *pid_info_list_i, int pid_num_i, struct pid_i
   for (int i = 0; i < pid_num_i; i++){
     if (pid_info_list_i[i].ppid == 0) {
       pid_root = &pid_info_list_i[i];
+      break;
     }
   }
   printf("pid_root %p, name %s\n", pid_root, pid_root->name);
