@@ -67,19 +67,11 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
   while (readdir(d) != NULL){
     pid_num++;
   }
-  if (d) {
-    free(d);
-    d = NULL;
-  }
   if (pid_num == 0) {
     printf("get nil pid_num");
     return -1;
   }
-  d = opendir("/proc");
-  if (!d) {
-    printf("opendir again failed, dir path %s", dir_path);
-    return -1;
-  }
+  rewinddir(d);
   struct pid_info* pid_info_list = (struct pid_info*)malloc(sizeof(struct pid_info)* pid_num);
   int index = 0;
   struct dirent *dir;
@@ -113,6 +105,10 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
       index++;
     }
     fclose(fp);
+  }
+  if (d) {
+    free(d);
+    d = NULL;
   }
   *pid_num_o = pid_num;
   return 0;
