@@ -50,21 +50,19 @@ void print_version_info(){
 }
 
 int get_pid_list(int **pid_o, int *pid_num_o){
-  DIR *d;
-  struct dirent *dir;
-  d = opendir("/proc");
+  DIR *d = opendir("/proc");
   int pid_num = 0;
-  if(d) {
+  if (d) {
     while (readdir(d) != NULL){
       pid_num++;
     }
   }
-  printf("get here")
   if (pid_num == 0) {
     return -1;
   }
   int* pid_array = (int*)malloc(sizeof(int)*pid_num);
   int index = 0;
+  struct dirent *dir;
   if(d) {
     while ((dir = readdir(d)) != NULL){
       int pid = atoi(dir->d_name);
