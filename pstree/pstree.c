@@ -49,10 +49,15 @@ void print_version_info(){
   printf("Copyright (C) 2020~2023 xiaoweilong\n");
 }
 
-int get_pid_list(int **pid_o, int *pid_num_o){
-  printf("2");
+struct pid_info {
+  char name[256];
+  int pid;
+  int ppid;
+  struct pid_info* next;
+};
+
+int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o){
   DIR *d = opendir("/proc");
-  printf("3");
   int pid_num = 0;
   if (d) {
     while (readdir(d) != NULL){
@@ -62,12 +67,11 @@ int get_pid_list(int **pid_o, int *pid_num_o){
   if (d) {
     free(d);
   }
-  printf("4");
   if (pid_num == 0) {
     return -1;
   }
-  printf("5");
   int* pid_array = (int*)malloc(sizeof(int)*pid_num);
+  struct pid_info* pid_info_list = (struct pid_info*)malloc(sizeof(struct pid_info)* pid_num);
   int index = 0;
   d = opendir("/proc");
   struct dirent *dir;
@@ -75,11 +79,34 @@ int get_pid_list(int **pid_o, int *pid_num_o){
     while ((dir = readdir(d)) != NULL){
       int pid = atoi(dir->d_name);
       if (pid <= 0) {
-        printf("ignore error file %s\n", dir->d_name);
+        char file_path[256];
+        FILE *fp = fopen(sprintf_s(file_path, "/proc/%s/stat", dir->d_name), "r");
+        if (fp) {
+          int pid;
+          char name[256];
+          char running_state[256];
+          int ppid;
+          char file_data[256];
+          if (fscanf_s(fp, "%d (%s) %s %d", &pid, name, running_state, &ppid) != EOF){
+           // consturct the value; 
+           strlcpy(pid_info_list[index].name, name, 256);
+           pid_info_list[index].pid = pid;
+           pid_info_list[index].ppid = ppid;
+           pid_info_list[index].next = NULL;
+           index++;
+          } else {
+            printf("error read from file failed, file_name /proc/%s\n", dir->d_name);
+            continue;
+          }
+          fclose(fp);
+        } else {
+          printf("read pid file failed, file_name /proc/%s\n", dir->d_name);
+          return -1;
+        }
+        // construct the value;
         continue;
       }
       pid_array[index++] = pid;
-      printf("pid get %d\n", pid);
     }
   }
   *pid_o = pid_array; 
@@ -110,18 +137,18 @@ int main(int argc, char *argv[]) {
   // get pid list;
   int* pid_list;
   int pid_num;
-  printf("1");
-  error_code = get_pid_list(&pid_list, &pid_num);
+  struct pid_info* pid_info_list;
+  error_code = get_pid_list(&pid_list, &pid_num, &pid_info_list);
   if(error_code != 0){
-    if (pid_list != NULL) {
-      free(pid_list);
-    }
     return -1;
   }
 
   // construct tree, find the root of each pid, and construt the tree;
-  // print the pid tree;
-
+  
+  // print the tree in bfs;
+  if (pid_list) {
+    free(pid_list);
+  }
   return 0;
 }
 
