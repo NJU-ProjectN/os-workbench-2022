@@ -108,7 +108,12 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
       pid_info_list[index].ppid = ppid;
       pid_info_list[index].next = NULL;
       index++; 
-      printf("name %s, pid %d, ppid %d, next %p\n", pid_info_list[index].name, pid_info_list[index].pid, pid_info_list[index].ppid, pid_info_list[index].next);
+      printf("file_name %s, name %s, pid %d, ppid %d, next %p\n", 
+        file_path, 
+        pid_info_list[index].name, 
+        pid_info_list[index].pid, 
+        pid_info_list[index].ppid, 
+        pid_info_list[index].next);
     }
     fclose(fp);
   }
