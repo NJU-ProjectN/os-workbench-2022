@@ -55,10 +55,11 @@ int get_pid_list(int **pid_o, int *pid_num_o){
   d = opendir("/proc");
   int pid_num = 0;
   if(d) {
-    while ((dir = readdir(d)) != NULL){
+    while (readdir(d) != NULL){
       pid_num++;
     }
   }
+  printf("get here")
   if (pid_num == 0) {
     return -1;
   }
