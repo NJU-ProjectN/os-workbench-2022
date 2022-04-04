@@ -289,6 +289,13 @@ int main(int argc, char *argv[]) {
     return -1;
   }
 
+  for (int i = 0; i < pid_num; i++) {
+      if (pid_info_list[i].children_num != 0 && pid_info_list[i].children != NULL) {
+        free(pid_info_list[i].children);
+        pid_info_list[i].children = NULL;
+      }
+  }
+
   if (pid_info_list) {
     free(pid_info_list);
     pid_info_list = NULL;
