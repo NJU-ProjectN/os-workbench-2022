@@ -79,7 +79,7 @@ int get_pid_list(struct pid_info **pid_info_list_o, int *pid_num_o){
   while ((dir = readdir(d)) != NULL){
     int pid = atoi(dir->d_name);
     if (pid <= 0) {
-      printf("skip for not legal pid, name %s\n", dir->d_name);
+      //printf("skip for not legal pid, name %s\n", dir->d_name);
       continue;
     }
     char file_path[512];
@@ -97,12 +97,12 @@ int get_pid_list(struct pid_info **pid_info_list_o, int *pid_num_o){
       pid_info_list[index].pid = cur_pid;
       pid_info_list[index].ppid = ppid;
       pid_info_list[index].children = NULL;
-      printf("file_name %s, name %s, pid %d, ppid %d, children %p\n", 
+      /*printf("file_name %s, name %s, pid %d, ppid %d, children %p\n", 
         file_path, 
         pid_info_list[index].name, 
         pid_info_list[index].pid, 
         pid_info_list[index].ppid, 
-        pid_info_list[index].children);
+        pid_info_list[index].children);*/
       index++;
     }
     fclose(fp);
