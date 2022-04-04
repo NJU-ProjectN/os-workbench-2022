@@ -59,6 +59,9 @@ int get_pid_list(int **pid_o, int *pid_num_o){
       pid_num++;
     }
   }
+  if (d) {
+    free(d);
+  }
   printf("4");
   if (pid_num == 0) {
     return -1;
@@ -66,6 +69,7 @@ int get_pid_list(int **pid_o, int *pid_num_o){
   printf("5");
   int* pid_array = (int*)malloc(sizeof(int)*pid_num);
   int index = 0;
+  d = opendir("/proc");
   struct dirent *dir;
   if(d) {
     while ((dir = readdir(d)) != NULL){
