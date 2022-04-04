@@ -204,11 +204,11 @@ int print_tree(struct pid_info *pid_tree, int space_num, int need_back_track){
       continue;
     }
     if (i == pid_tree->children_num - 1) {
-      printf("`-");
+      printf("\n`-");
       print_tree(pid_tree->children[i], space_num+sizeof(pid_tree->name)+1, 1);
       continue;
     }
-    printf("|-");
+    printf("\n|-");
     print_tree(pid_tree->children[i], space_num+sizeof(pid_tree->name)+1, 1);
   }
   return 0;
