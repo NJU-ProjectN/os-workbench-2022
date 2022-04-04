@@ -127,13 +127,14 @@ int append_child_node(struct pid_info *pid_info_list_i, int pid_num_i, int ppid_
     return 0;
   }
   struct pid_info** pid_info_list = (struct pid_info**)malloc(sizeof(struct pid_info*)*child_num);
-  for(int i = 0, j = 0; i< child_num; i++){
+  for(int i = 0, j = 0; i< pid_num_i; i++){
    if (pid_info_list_i[i].ppid == ppid_i) {
      pid_info_list[j] = pid_info_list_i + i;
      j++;
    } 
   }
   *children = pid_info_list;
+  *children_num = child_num;  
 
   for (int i = 0; i < child_num; i++) {
     append_child_node(pid_info_list_i, pid_num_i, pid_info_list[i]->ppid, &pid_info_list[i]->children, &pid_info_list[i]->children_num);
