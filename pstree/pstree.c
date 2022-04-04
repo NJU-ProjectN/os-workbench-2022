@@ -80,7 +80,7 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
       int pid = atoi(dir->d_name);
       if (pid <= 0) {
         char file_path[256];
-        FILE *fp = fopen(sprintf_s(file_path, "/proc/%s/stat", dir->d_name), "r");
+        FILE *fp = fopen(snprintf(file_path, 256, "/proc/%s/stat", dir->d_name), "r");
         if (fp) {
           int pid;
           char name[256];
