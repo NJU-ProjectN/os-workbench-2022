@@ -34,8 +34,17 @@ int process_args(int argc, char *argv[], struct Args *args){
 }
 
 void print_usage(){
-  printf("Usage: pstree [-gn]");
-  printf("pstree -v"); 
+  printf("Usage: pstree [-pn]\n");
+  printf("pstree -V\n");
+  printf("Display a tree of process\n\n");
+  printf("-p, --show-pids show pids of each process\n");
+  printf("-n, ---numeric-sort show pid from small to big\n");
+  printf("-V, --version show the version info"); 
+}
+
+void print_version_info(){
+  printf("pstree (PSmisc) UNKNOWN\n");
+  printf("Copyright (C) 2020~2023 xiaoweilong\n");
 }
 
 int main(int argc, char *argv[]) {
@@ -51,6 +60,11 @@ int main(int argc, char *argv[]) {
   if (error_code != 0) {
     print_usage();
     return -1;
+  }
+
+  if (args.version != 0) {
+    print_version_info();
+    return 0;
   }
 
   // get pid list;
