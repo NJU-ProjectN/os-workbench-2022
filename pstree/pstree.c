@@ -138,7 +138,7 @@ int append_child_node(struct pid_info *pid_info_list_i, int pid_num_i, int ppid_
   *children_num = child_num;  
 
   for (int i = 0; i < child_num; i++) {
-    append_child_node(pid_info_list_i, pid_num_i, pid_info_list[i]->ppid, &pid_info_list[i]->children, &pid_info_list[i]->children_num);
+    append_child_node(pid_info_list_i, pid_num_i, pid_info_list[i]->pid, &pid_info_list[i]->children, &pid_info_list[i]->children_num);
   }
 
   return 0;
