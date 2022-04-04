@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
+#include <dirent.h>
 
 struct Args {
   int show_pids;
@@ -47,6 +48,35 @@ void print_version_info(){
   printf("Copyright (C) 2020~2023 xiaoweilong\n");
 }
 
+int get_pid_list(int **pid_o, int *pid_num_o){
+  DIR *d;
+  struct dirent *dir;
+  d = opendir("/proc");
+  int pid_num = 0;
+  if(d) {
+    while ((dir = readdir(d)) != NULL && dir->d_type == DT_REG){
+      pid_num++;
+    }
+  }
+  if (pid_num == 0) {
+    return -1;
+  }
+  int* pid_array = (int*)malloc(sizeof(int)*pid_num);
+  int index = 0;
+  if(d) {
+    while ((dir = readdir(d)) != NULL && dir->d_type == DT_REG){
+      int pid = atoi(dir->d_name);
+      if (pid < 0) {
+        printf("ignore error file %s", dir->d_name);
+      }
+      pid_array[index++] = pid;
+    }
+  }
+  *pid_o = pid_array; 
+  *pid_num_o = pid_num;
+  return 0;
+}
+
 int main(int argc, char *argv[]) {
   // print args;
   print_args(argc, argv);
@@ -68,6 +98,7 @@ int main(int argc, char *argv[]) {
   }
 
   // get pid list;
+
   // construct tree, find the root of each pid, and construt the tree;
   // print the pid tree;
 
