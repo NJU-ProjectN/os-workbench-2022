@@ -145,12 +145,15 @@ int append_child_node(struct pid_info *pid_info_list_i, int pid_num_i, int ppid_
 
 int construct_tree(struct pid_info *pid_info_list_i, int pid_num_i, struct pid_info **pid_tree){
   // find the root;
+  printf("1");
   struct pid_info *pid_root = NULL;
   for (int i = 0; i < pid_num_i; i++){
     if (pid_info_list_i[i].ppid == 0) {
       pid_root = &pid_info_list_i[i];
     }
   }
+  printf("pid_root %p, name %s\n", pid_root, pid_root->name);
+  printf("2");
   if (pid_root == NULL) {
     printf("construct_tree failed");
     return -1;
