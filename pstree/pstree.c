@@ -162,6 +162,7 @@ int construct_tree(struct pid_info *pid_info_list_i, int pid_num_i, struct pid_i
   printf("3\n");
 
   int error_code = append_child_node(pid_info_list_i, pid_num_i, pid_root->pid, &pid_root->children, &pid_root->children_num);
+  printf("4\n");
   if (error_code) {
     printf("construct_tree failed, error_code %d", error_code);
     return -1;
