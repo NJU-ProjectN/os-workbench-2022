@@ -79,7 +79,7 @@ int get_pid_list(int **pid_o, int *pid_num_o, struct pid_info **pid_info_list_o)
     while ((dir = readdir(d)) != NULL){
       int pid = atoi(dir->d_name);
       if (pid <= 0) {
-        char file_path[256];
+        char file_path[512];
         sprintf(file_path, "/proc/%s/stat", dir->d_name);
         FILE *fp = fopen(file_path, "r");
         if (fp) {
