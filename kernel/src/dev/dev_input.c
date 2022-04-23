@@ -92,8 +92,8 @@ static Context *input_notify(Event ev, Context *context) {
 
 static int input_init(device_t *dev) {
   input_t *in = dev->ptr;
+  *in = (input_t) {};
   in->events = pmm->alloc(sizeof(in->events[0]) * NEVENTS);
-  in->front = in->rear = 0;
 
   kmt->spin_init(&in->lock, "/dev/input lock");
   kmt->sem_init(&in->event_sem, "events in queue", 0);
