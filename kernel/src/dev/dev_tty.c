@@ -180,7 +180,7 @@ static char welcome_text[] =
 // 4: ║ (186)
 // 5: ╔ (201)
 // 6: ╝ (188)
-// 8: ╚ (200)
+// 7: ╚ (200)
 
 static void welcome(device_t *dev) {
   for (char *p = welcome_text; *p; p++) {
