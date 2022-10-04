@@ -7,12 +7,6 @@
 #include <stdnoreturn.h>
 #include <string.h>
 
-#ifdef LOCAL_MACHINE
-#define debug(...) printf(__VA_ARGS__)
-#else
-#define debug()
-#endif
-
 #define STACK_SIZE (64 * 1024)
 
 enum co_status {

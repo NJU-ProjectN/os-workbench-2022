@@ -4,6 +4,7 @@
 #include <string.h>
 #include "co-test.h"
 
+#define LOCAL_MACHINE
 int g_count = 0;
 
 static void add_count() {
@@ -15,6 +16,7 @@ static int get_count() {
 }
 
 static void work_loop(void *arg) {
+    debug("loop %s\n", arg);
     const char *s = (const char*)arg;
     for (int i = 0; i < 100; ++i) {
         printf("%s%d  ", s, get_count());
