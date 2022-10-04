@@ -130,19 +130,12 @@ void co_wait(struct co *co) {
 }
 
 void co_yield() {
-/**   if (current == NULL) { */
-    /** assert(co_node); */
-    /** current = co_node->coroutine; */
-  /** } */
   int val = setjmp(current->context);
   if (val == 0) {
     current->status = CO_RUNNING;
     // select a coroutine to yield
     co_node = co_node->next;
     while(co_node) {
-/**       if (co_node->coroutine->func == NULL) { */
-        /** continue; */
-      /** } */
       if (strcmp(co_node->coroutine->name, "main") == 0) {
         continue;
       }
