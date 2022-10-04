@@ -174,9 +174,9 @@ static __attribute__((constructor)) void co_constructor(void) {
 
 static __attribute__((destructor)) void co_destructor(void) {
   /** co_node = co_head; */
-  while(co_node) {
-    current = co_node->coroutine;
-    free(current);
-    free(co_remove(co_node));
-  }
+/**   while(co_node) { */
+    /** current = co_node->coroutine; */
+    /** free(current); */
+    /** free(co_remove(co_node)); */
+  /** } */
 }
