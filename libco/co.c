@@ -137,6 +137,7 @@ void co_yield() {
     co_node = co_node->next;
     while(co_node) {
       if (strcmp(co_node->coroutine->name, "main") == 0) {
+        co_node = co_node->next;
         continue;
       }
       if(co_node->coroutine->status == CO_NEW) {
