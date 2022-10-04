@@ -152,10 +152,8 @@ void co_yield() {
       longjmp(current->context, 1);
     } else {
       ((struct co volatile *)current)->status = CO_RUNNING;
-      void *sp = current->stack + STACK_SIZE;
-      void* entry = current->func;
-      void * arg = current->arg;
-      stack_switch_call(sp, entry, arg);
+      stack_switch_call(current->stack + STACK_SIZE, current->func,
+                        current->arg);
       current->status = CO_DEAD;
       if (current->waiter) {
         current->waiter->status = CO_RUNNING;
