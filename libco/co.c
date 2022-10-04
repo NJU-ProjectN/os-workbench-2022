@@ -81,7 +81,7 @@ static CoPool* co_remove(CoPool* remove_node) {
 static inline void stack_switch_call(void* sp, void *entry, void* arg) {
   asm volatile(
 #if __x86_64__
-    "movq %0, %%rsp; movq %2, %%rdi; jmpq *%1"
+    "movq %0, %%rsp; movq %2, %%rdi; call *%1"
     ::"b"((uintptr_t)sp - 16), "d"((uintptr_t)entry), "a"((uintptr_t)arg)
 #else
     "movl %0, %%rsp; movl %2, 4(%0); call *%1"
