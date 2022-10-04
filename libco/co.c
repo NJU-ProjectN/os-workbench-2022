@@ -159,7 +159,7 @@ void co_yield() {
       stack_switch_call(current->stack + STACK_SIZE, current->func,
                         current->arg);
       current->status = CO_DEAD;
-      if (current->waiter) {
+      if (current->waiter != NULL) {
         current->waiter->status = CO_RUNNING;
       }
       co_yield();
