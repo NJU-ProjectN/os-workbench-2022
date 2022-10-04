@@ -160,7 +160,7 @@ void co_yield() {
                         current->arg);
       ((struct co volatile *)current)->status = CO_DEAD;
       /** current->status = CO_DEAD; */
-      if (current->waiter != NULL) {
+      if (!current->waiter) {
         current->waiter->status = CO_RUNNING;
       }
       co_yield();
