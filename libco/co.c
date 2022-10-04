@@ -35,7 +35,7 @@ struct co {
   uint8_t stack[STACK_SIZE];
 };
 
-// Define coroutine list(pool).
+// Define coroutine doule-linked-cylic-list(pool).
 typedef struct COPOOL {
   struct co *coroutine;
   struct COPOOL *pre;
@@ -109,8 +109,12 @@ struct co *co_start(const char *name, void (*func)(void *), void *arg) {
 void co_wait(struct co *co) {
   assert(co);
   if (co->status != CO_DEAD) {
-    co->status = CO_WAITING;
-    co->waiter = current;
+    if (co->status == CO_RUNNING) {
+      co->status = CO_WAITING;
+    }
+    if (co->status == CO_WAITING) {
+      co->waiter = current;
+    }
     co_yield();
   }
 
@@ -136,6 +140,9 @@ void co_yield() {
     // select a coroutine to yield
     co_node = co_node->next;
     while(co_node) {
+/**       if (co_node->coroutine->func == NULL) { */
+        /** continue; */
+      /** } */
       if(co_node->coroutine->status == CO_NEW) {
         current = co_node->coroutine;
         break;
