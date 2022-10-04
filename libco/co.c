@@ -9,6 +9,14 @@
 
 #define STACK_SIZE (64 * 1024)
 
+#define LOCAL_MACHINE
+
+#ifdef LOCAL_MACHINE
+#define debug(fmt, ...) printf(fmt, __VA_ARGS__)
+#else
+#define debug()
+#endif
+
 enum co_status {
   CO_NEW = 1, // new created, have not been executed before
   CO_RUNNING, // already running.
@@ -118,10 +126,10 @@ void co_wait(struct co *co) {
 }
 
 void co_yield() {
-  if (current == NULL) {
-    assert(co_node);
-    current = co_node->coroutine;
-  }
+/**   if (current == NULL) { */
+    /** assert(co_node); */
+    /** current = co_node->coroutine; */
+  /** } */
   int val = setjmp(current->context);
   if (val == 0) {
     current->status = CO_RUNNING;
@@ -156,5 +164,19 @@ void co_yield() {
     }
   } else {
     ;
+  }
+}
+
+static __attribute__((constructor)) void co_constructor(void) {
+  current = co_start("main", NULL, NULL);
+  current->status = CO_RUNNING;
+}
+
+static __attribute__((destructor)) void co_destructor(void) {
+  co_node = co_head;
+  while(co_node) {
+    current = co_node->coroutine;
+    free(current);
+    free(co_remove(co_node));
   }
 }
