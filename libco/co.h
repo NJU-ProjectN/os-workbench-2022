@@ -1,5 +1,7 @@
+#include <stdio.h>
+
 #ifdef LOCAL_MACHINE
-#define debug(...) printf(__VA_ARGS__)
+#define debug(fmt, ...) printf(fmt, __VA_ARGS__)
 #else
 #define debug()
 #endif
