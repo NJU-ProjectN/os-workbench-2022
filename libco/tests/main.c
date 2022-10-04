@@ -4,7 +4,9 @@
 #include <string.h>
 #include "co-test.h"
 
-#define LOCAL_MACHINE
+/** #define LOCAL_MACHINE */
+
+#define debug(fmt, ...) printf(fmt, __VA_ARGS__)
 int g_count = 0;
 
 static void add_count() {
