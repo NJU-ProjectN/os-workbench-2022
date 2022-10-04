@@ -18,11 +18,11 @@ static int get_count() {
 }
 
 static void work_loop(void *arg) {
-    debug("loop %s\n", arg);
     const char *s = (const char*)arg;
     for (int i = 0; i < 100; ++i) {
         printf("%s%d  ", s, get_count());
         add_count();
+        debug("work=%s, count=%d", arg, g_count);
         co_yield();
     }
 }
