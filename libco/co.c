@@ -115,7 +115,7 @@ void co_wait(struct co *co) {
   }
 
   /** CoPool* node = co_head; */
-  co_node = co_head;
+  /** co_node = co_head; */
   while (co_node->coroutine != co) {
     co_node = co_node->next;
   }
@@ -173,7 +173,7 @@ static __attribute__((constructor)) void co_constructor(void) {
 }
 
 static __attribute__((destructor)) void co_destructor(void) {
-  co_node = co_head;
+  /** co_node = co_head; */
   while(co_node) {
     current = co_node->coroutine;
     free(current);
