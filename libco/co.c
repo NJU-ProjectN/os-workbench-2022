@@ -143,6 +143,9 @@ void co_yield() {
 /**       if (co_node->coroutine->func == NULL) { */
         /** continue; */
       /** } */
+      if (strcmp(co_node->coroutine->name, "main") == 0) {
+        continue;
+      }
       if(co_node->coroutine->status == CO_NEW) {
         current = co_node->coroutine;
         break;
