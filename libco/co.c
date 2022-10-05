@@ -80,6 +80,8 @@ static CoPool* co_remove(CoPool* remove_node) {
   return node;
 }
 
+void restore_return() {}
+
 static inline void stack_switch_call(void* sp, void *entry, void* arg) {
   asm volatile(
 #if __x86_64__
@@ -158,6 +160,7 @@ void co_yield() {
       ((struct co volatile *)current)->status = CO_RUNNING;
       stack_switch_call(current->stack + STACK_SIZE, current->func,
                         current->arg);
+      restore_return();
       ((struct co volatile *)current)->status = CO_DEAD;
       /** current->status = CO_DEAD; */
       if (current->waiter) {
