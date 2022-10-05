@@ -88,7 +88,7 @@ void restore_return() {
 static inline void stack_switch_call(void* sp, void *entry, void* arg) {
   asm volatile(
 #if __x86_64__
-    "movq %%rbp, 8(%0); movq %0, %%rsp; movq %%rsp, %%rbp; movq %2, %%rdi; callq *%1"
+    "movq %%rbp, 8(%0); movq %0, %%rsp; movq %%rsp, %%rbp; movq %2, %%rdi; jmp *%1"
     ::"b"((uintptr_t)sp - 0x10), "d"((uintptr_t)entry), "a"((uintptr_t)arg)
 #else
     "movl %0, %%rsp; movl %2, 4(%0); call *%1"
