@@ -11,7 +11,7 @@
 #define STACK_SIZE (64 * 1024)
 #define COROUTINE_NAME_LENGTH (128)
 
-/** #define LOCAL_MACHINE */
+#define LOCAL_MACHINE
 
 #ifdef LOCAL_MACHINE
 #define debug(fmt, ...) printf(fmt, __VA_ARGS__)
@@ -101,8 +101,16 @@ static inline void stack_switch_call(void* sp, void *entry, void* arg) {
 struct co *co_start(const char *name, void (*func)(void *), void *arg) {
   struct co *co_ptr = (struct co *)malloc(sizeof(struct co));
   assert(co_ptr);
-  memset(co_ptr->name, 0, COROUTINE_NAME_LENGTH);
-  strcpy(co_ptr->name, name);
+  /** memset(co_ptr->name, 0, COROUTINE_NAME_LENGTH); */
+  /** strcpy(co_ptr->name, name); */
+  size_t name_len = strlen(name);
+  debug("name %s has length %ld\n", name, strlen(name));
+  for (size_t i = 0; i < name_len; ++i) {
+    co_ptr->name[i] = name[i];
+  }
+  for (size_t i = name_len; i < COROUTINE_NAME_LENGTH; ++i) {
+    co_ptr->name[i] = '\0';
+  }
   co_ptr->func = func;
   co_ptr->arg = arg;
 
@@ -167,7 +175,7 @@ void co_yield() {
     // select a coroutine to yield
     co_node = co_node->next;
     while(co_node) {
-      debug("coroutine name: %s\n", co_node->coroutine->name);
+      /** debug("coroutine name: %s\n", co_node->coroutine->name); */
       if (strcmp(co_node->coroutine->name, "main") == 0) {
         if (is_all_coroutines_done()) {
           current = co_node->coroutine;
