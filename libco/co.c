@@ -9,6 +9,7 @@
 #include <string.h>
 
 #define STACK_SIZE (64 * 1024)
+#define COROUTINE_NAME_LENGTH (128)
 
 /** #define LOCAL_MACHINE */
 
@@ -26,7 +27,7 @@ enum co_status {
 };
 
 struct co {
-  char *name;
+  char name[COROUTINE_NAME_LENGTH];
   void (*func)(void *);
   void *arg;
 
@@ -100,6 +101,7 @@ static inline void stack_switch_call(void* sp, void *entry, void* arg) {
 struct co *co_start(const char *name, void (*func)(void *), void *arg) {
   struct co *co_ptr = (struct co *)malloc(sizeof(struct co));
   assert(co_ptr);
+  memset(co_ptr->name, 0, COROUTINE_NAME_LENGTH);
   strcpy(co_ptr->name, name);
   co_ptr->func = func;
   co_ptr->arg = arg;
