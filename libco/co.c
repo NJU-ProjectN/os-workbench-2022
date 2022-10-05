@@ -80,7 +80,9 @@ static CoPool* co_remove(CoPool* remove_node) {
   return node;
 }
 
-int restore_return() { return 0; }
+void restore_return() {
+  asm volatile("xor %%rax, %%rax; cmpq %%rax, %%rax"::);
+}
 
 static inline void stack_switch_call(void* sp, void *entry, void* arg) {
   asm volatile(
