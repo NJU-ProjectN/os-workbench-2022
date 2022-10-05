@@ -9,7 +9,7 @@
 #include <string.h>
 
 #define STACK_SIZE (64 * 1024)
-#define COROUTINE_NAME_LENGTH (128)
+#define COROUTINE_NAME_LENGTH (32)
 
 #define LOCAL_MACHINE
 
