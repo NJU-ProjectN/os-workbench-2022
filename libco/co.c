@@ -88,7 +88,7 @@ void restore_return() {
 static inline void stack_switch_call(void* sp, void *entry, void* arg) {
   asm volatile(
 #if __x86_64__
-    "movq %%rbp, 8(%0); movq %0, %%rsp; movq %%rsp, %%rsi; movq %2, %%rdi; callq *%1"
+    "movq %%rbp, 8(%0); movq %0, %%rsp; movq %2, %%rdi; callq *%1"
     ::"b"((uintptr_t)sp - 0x10), "d"((uintptr_t)entry), "a"((uintptr_t)arg)
 #else
     "movl %0, %%rsp; movl %2, 4(%0); call *%1"
@@ -165,6 +165,10 @@ void co_yield() {
     // select a coroutine to yield
     co_node = co_node->next;
     while(co_node) {
+      if (co_node->coroutine == NULL) {
+        co_node = co_node->next;
+        continue;
+      }
       if (strcmp(co_node->coroutine->name, "main") == 0) {
         if (is_all_coroutines_done()) {
           current = co_node->coroutine;
