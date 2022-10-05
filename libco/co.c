@@ -111,6 +111,7 @@ struct co *co_start(const char *name, void (*func)(void *), void *arg) {
   for (size_t i = name_len; i < COROUTINE_NAME_LENGTH; ++i) {
     co_ptr->name[i] = '\0';
   }
+  debug("name: %s\n", co_ptr->name);
   co_ptr->func = func;
   co_ptr->arg = arg;
 
