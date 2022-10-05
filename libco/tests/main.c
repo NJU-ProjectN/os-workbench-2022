@@ -19,7 +19,6 @@ static int get_count() {
 
 static void work_loop(void *arg) {
     const char *s = (const char*)arg;
-    debug("work=%s, count=%d\n", arg, g_count);
     for (int i = 0; i < 100; ++i) {
       printf("%s%d  ", s, get_count());
       add_count();
@@ -28,7 +27,8 @@ static void work_loop(void *arg) {
 }
 
 static void work(void *arg) {
-    work_loop(arg);
+  debug("work=%s, count=%d\n", arg, g_count);
+  work_loop(arg);
 }
 
 static void test_1() {
