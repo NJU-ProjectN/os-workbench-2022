@@ -136,7 +136,7 @@ void co_wait(struct co *co) {
 void co_yield() {
   int val = setjmp(current->context);
   if (val == 0) {
-    current->status = CO_RUNNING;
+    /** current->status = CO_RUNNING; */
     // select a coroutine to yield
     co_node = co_node->next;
     while(co_node) {
