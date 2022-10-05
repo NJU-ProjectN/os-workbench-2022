@@ -15,7 +15,7 @@
 #ifdef LOCAL_MACHINE
 #define debug(fmt, ...) printf(fmt, __VA_ARGS__)
 #else
-#define debug()
+#define debug(fmt, ...)
 #endif
 
 enum co_status {
