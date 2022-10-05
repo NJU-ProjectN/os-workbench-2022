@@ -7,7 +7,7 @@
 /** #define LOCAL_MACHINE */
 
 #define debug(fmt, ...) printf(fmt, __VA_ARGS__)
-int g_count = 0;
+int g_count = 200;
 
 static void add_count() {
     g_count++;
