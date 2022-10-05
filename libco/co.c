@@ -1,6 +1,7 @@
 #include "co.h"
 #include <assert.h>
 #include <setjmp.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -137,6 +138,26 @@ void co_wait(struct co *co) {
   free(co_remove(co_node));
 }
 
+bool is_all_coroutines_done() {
+  CoPool* node = co_head;
+  assert(node);
+  bool done = true;
+  if ((strcmp(node->coroutine->name, "main") != 0) &&
+      node->coroutine->status != CO_DEAD) {
+    return false;
+  }
+  node = node->next;
+  while (node && node != co_head) {
+    if ((strcmp(node->coroutine->name, "main") != 0) &&
+        node->coroutine->status != CO_DEAD) {
+      done = false;
+      break;
+    }
+    node = node->next;
+  }
+  return done;
+}
+
 void co_yield() {
   int val = setjmp(current->context);
   if (val == 0) {
@@ -145,6 +166,11 @@ void co_yield() {
     co_node = co_node->next;
     while(co_node) {
       if (strcmp(co_node->coroutine->name, "main") == 0) {
+        if (is_all_coroutines_done()) {
+          current = co_node->coroutine;
+          current->status = CO_RUNNING;
+          break;
+        }
         co_node = co_node->next;
         continue;
       }
