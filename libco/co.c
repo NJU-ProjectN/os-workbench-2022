@@ -165,10 +165,6 @@ void co_yield() {
     // select a coroutine to yield
     co_node = co_node->next;
     while(co_node) {
-      if (co_node->coroutine == NULL) {
-        co_node = co_node->next;
-        continue;
-      }
       debug("coroutine name: %s\n", co_node->coroutine->name);
       if (strcmp(co_node->coroutine->name, "main") == 0) {
         if (is_all_coroutines_done()) {
