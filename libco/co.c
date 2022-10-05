@@ -116,6 +116,10 @@ void co_wait(struct co *co) {
     if (co->status == CO_RUNNING) {
       co->status = CO_WAITING;
     }
+    if (strcmp(current->name, "main") == 0) {
+      current->status = CO_WAITING;
+      current->waiter = co;
+    }
     if (co->status == CO_WAITING) {
       co->waiter = current;
     }
@@ -162,6 +166,9 @@ void co_yield() {
       ((struct co volatile *)current)->status = CO_RUNNING;
       stack_switch_call(current->stack + STACK_SIZE, current->func,
                         current->arg);
+      // necessary for later condition test?
+      // without this, current->waiter is NULL, but the PC will still enter the
+      // body of 'if'.
       restore_return();
       ((struct co volatile *)current)->status = CO_DEAD;
       /** current->status = CO_DEAD; */
