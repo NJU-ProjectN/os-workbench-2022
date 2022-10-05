@@ -26,7 +26,7 @@ enum co_status {
 };
 
 struct co {
-  const char *name;
+  char *name;
   void (*func)(void *);
   void *arg;
 
@@ -100,7 +100,7 @@ static inline void stack_switch_call(void* sp, void *entry, void* arg) {
 struct co *co_start(const char *name, void (*func)(void *), void *arg) {
   struct co *co_ptr = (struct co *)malloc(sizeof(struct co));
   assert(co_ptr);
-  co_ptr->name = name;
+  strcpy(co_ptr->name, name);
   co_ptr->func = func;
   co_ptr->arg = arg;
 
