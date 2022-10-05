@@ -10,7 +10,7 @@
 
 #define STACK_SIZE (64 * 1024)
 
-#define LOCAL_MACHINE
+/** #define LOCAL_MACHINE */
 
 #ifdef LOCAL_MACHINE
 #define debug(fmt, ...) printf(fmt, __VA_ARGS__)
