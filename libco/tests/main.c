@@ -1,8 +1,5 @@
-
 #include "co-test.h"
 #include <assert.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 int g_count = 0;
@@ -14,7 +11,7 @@ static int get_count() { return g_count; }
 static void work_loop(void *arg) {
   const char *s = (const char *)arg;
   for (int i = 0; i < 100; ++i) {
-    // printf("%s%d  ", s, get_count());
+    printf("%s%d  ", s, get_count());
     add_count();
     co_yield();
   }
