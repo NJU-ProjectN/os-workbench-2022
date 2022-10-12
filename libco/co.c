@@ -115,6 +115,7 @@ void co_exit() {
   assert(waiter == RemoveFromList(waiting_list_guard, waiter->name_));
   // wake waiter
   InsertToList(sched_list_guard, waiter);
+  RemoveFromList(sched_list_guard, co_self->name_);
 
   // run next
   schedule();
