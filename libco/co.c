@@ -115,6 +115,7 @@ void co_exit() {
     InsertToList(sched_list_guard, waiter);
   }
   RemoveFromList(sched_list_guard, co_self->name_);
+  g_sched_list_size--;
 
   // run next
   schedule();
