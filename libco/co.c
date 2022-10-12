@@ -120,7 +120,7 @@ struct co *co_start(const char *name, void (*func)(void *), void *arg) {
   new_co->arg_ = arg;
   new_co->exit_func = co_exit;
   new_co->status_ = CO_NEW;
-  memset(new_co->stack_, 0, sizeof(uint8_t) * STACK_SIZE);
+  memset(new_co->stack_, 0, sizeof(uint16_t) * STACK_SIZE);
 
   // context and status should be set before running
   if (sched_list_guard == NULL) {
