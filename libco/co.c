@@ -92,7 +92,7 @@ void schedule() {
     co_to_run->status_ = CO_NEW;
     g_running_co = co_to_run;
     if (co_to_run->status_ == CO_NEW) {
-      printf("stack bottom: %x, sp: %x.\n", co_to_run->stack_,
+      printf("stack bottom: %i, sp: %i.\n", co_to_run->stack_,
              co_to_run->stack_ + 2048);
       stack_switch_call(co_to_run->stack_ + 2048, co_to_run->func_,
                         (uintptr_t)co_to_run->arg_);
