@@ -155,7 +155,7 @@ void co_wait(struct co *co_to_wait) {
   co_to_wait->waiter_ = g_running_co;
 
   // move g_running_co to waiting_list
-  RemoveFromList(sched_list_guard, g_running_co->name_);
+  RemoveFromList(&sched_list_guard, g_running_co->name_);
   g_sched_list_size--;
   InsertToList(waiting_list_guard, g_running_co);
 
