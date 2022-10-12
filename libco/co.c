@@ -1,5 +1,6 @@
 
 #include "co.h"
+#include <assert.h>
 #include <setjmp.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -31,6 +32,7 @@ static struct co *g_running_co;
 static struct co *waiting_list_guard;
 static struct co *sched_list_guard;
 static uint32_t g_sched_list_size = 0;
+uint32_t main_waited = 0;
 
 static inline void stack_switch_call(void *sp, void *entry, uintptr_t arg) {
   asm volatile(
@@ -46,6 +48,28 @@ static inline void stack_switch_call(void *sp, void *entry, uintptr_t arg) {
       : "memory"
 #endif
   );
+}
+
+struct co *RemoveFromList(struct co *guard, const char *name) {
+  struct co *prev = NULL, *curr = guard;
+  while (curr->name_ != name) {
+    prev = curr;
+    curr = curr->next_;
+  }
+
+  assert(curr != NULL);
+  prev->next_ = curr->next_;
+  return curr;
+}
+
+void InsertToList(struct co *guard, struct co *x) {
+  if (guard == NULL) {
+    guard = x;
+    guard->next_ = NULL;
+    return;
+  }
+  x->next_ = guard->next_;
+  guard->next_ = x;
 }
 
 void schedule() {
@@ -64,8 +88,14 @@ void schedule() {
   // save current and run next
   int i = setjmp(g_running_co->context_);
   if (i == 0) {
-    stack_switch_call(co_to_run->stack_, co_to_run->func_,
-                      (uintptr_t)co_to_run->arg_);
+    co_to_run->status_ = CO_NEW;
+    g_running_co = co_to_run;
+    if (co_to_run->status_ == CO_NEW) {
+      stack_switch_call(co_to_run->stack_, co_to_run->func_,
+                        (uintptr_t)co_to_run->arg_);
+    } else {
+      longjmp(co_to_run->context_, 1);
+    }
   }
 }
 
@@ -76,6 +106,7 @@ struct co *co_start(const char *name, void (*func)(void *), void *arg) {
   new_co->arg_ = arg;
   new_co->status_ = CO_NEW;
   memset(new_co->stack_, 0, sizeof(uint8_t) * STACK_SIZE);
+
   // context and status should be set before running
   if (sched_list_guard == NULL) {
     sched_list_guard = new_co;
@@ -87,6 +118,28 @@ struct co *co_start(const char *name, void (*func)(void *), void *arg) {
   return new_co;
 }
 
-void co_wait(struct co *co) {}
+void co_wait(struct co *co_to_wait) {
+  if (g_running_co == NULL) {
+    // this is main workflow
+    struct co *main_co = co_start("main_coroutine", NULL, NULL);
+    main_co->status_ = CO_RUNNING;
+    g_running_co = main_co;
+  }
+  co_to_wait->waiter_ = g_running_co;
 
-void co_yield() {}
+  // move g_running_co to waiting_list
+  RemoveFromList(sched_list_guard, g_running_co->name_);
+  InsertToList(waiting_list_guard, g_running_co);
+
+  schedule();
+
+  // recycle co
+  free(co_to_wait);
+}
+
+void co_yield() {
+  int i = setjmp(g_running_co->context_);
+  if (i == 0) {
+    schedule();
+  }
+}
