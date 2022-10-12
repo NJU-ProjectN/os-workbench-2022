@@ -8,7 +8,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#define STACK_SIZE 409600
+#define STACK_SIZE 40960
 
 enum co_status {
   CO_NEW = 0,
@@ -92,8 +92,6 @@ void schedule() {
     co_to_run->status_ = CO_NEW;
     g_running_co = co_to_run;
     if (co_to_run->status_ == CO_NEW) {
-      printf("stack bottom: %p, sp: %p.\n", co_to_run->stack_,
-             co_to_run->stack_ + 2048);
       stack_switch_call(co_to_run->stack_, co_to_run->func_,
                         (uintptr_t)co_to_run->arg_);
     } else {
