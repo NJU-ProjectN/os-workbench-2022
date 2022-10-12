@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <setjmp.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -91,7 +92,9 @@ void schedule() {
     co_to_run->status_ = CO_NEW;
     g_running_co = co_to_run;
     if (co_to_run->status_ == CO_NEW) {
-      stack_switch_call(co_to_run->stack_, co_to_run->func_,
+      printf("stack bottom: %x, sp: %x.\n", co_to_run->stack_,
+             co_to_run->stack_ + 2048);
+      stack_switch_call(co_to_run->stack_ + 2048, co_to_run->func_,
                         (uintptr_t)co_to_run->arg_);
     } else {
       longjmp(co_to_run->context_, 1);
