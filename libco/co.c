@@ -62,7 +62,7 @@ struct co *RemoveFromList(struct co *guard, const char *name) {
 
   assert(curr != NULL);
   if (prev == NULL) {
-    prev = curr->next_;
+    guard = curr->next_;
   } else {
     prev->next_ = curr->next_;
   }
