@@ -89,9 +89,8 @@ void schedule() {
   // save current and run next
   int i = setjmp(g_running_co->context_);
   if (i == 0) {
-    co_to_run->status_ = CO_NEW;
-    g_running_co = co_to_run;
     g_running_co->status_ = CO_WAITING;
+    g_running_co = co_to_run;
     if (co_to_run->status_ == CO_NEW) {
       co_to_run->status_ = CO_RUNNING;
       stack_switch_call(co_to_run->stack_, co_to_run->func_,
