@@ -113,6 +113,7 @@ void co_exit() {
     assert(waiter == RemoveFromList(waiting_list_guard, waiter->name_));
     // wake waiter
     InsertToList(sched_list_guard, waiter);
+    g_sched_list_size++;
   }
   RemoveFromList(sched_list_guard, co_self->name_);
   g_sched_list_size--;
@@ -153,6 +154,7 @@ void co_wait(struct co *co_to_wait) {
 
   // move g_running_co to waiting_list
   RemoveFromList(sched_list_guard, g_running_co->name_);
+  g_sched_list_size--;
   InsertToList(waiting_list_guard, g_running_co);
 
   schedule();
