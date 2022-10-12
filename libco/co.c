@@ -78,6 +78,9 @@ void InsertToList(struct co *guard, struct co *x) {
 void co_exit() {
   struct co *co_self = g_running_co;
   struct co *waiter = co_self->waiter_;
+  if (waiter == NULL) {
+    return;
+  }
   assert(waiter == RemoveFromList(waiting_list_guard, waiter->name_));
   // wake waiter
   InsertToList(sched_list_guard, waiter);
