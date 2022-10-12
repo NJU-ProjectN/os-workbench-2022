@@ -84,6 +84,7 @@ struct co *co_start(const char *name, void (*func)(void *), void *arg) {
     sched_list_guard->next_ = new_co;
   }
   g_sched_list_size++;
+  return new_co;
 }
 
 void co_wait(struct co *co) {}
