@@ -79,6 +79,9 @@ void InsertToList(struct co *guard, struct co *x) {
 }
 
 void schedule() {
+  if (g_sched_list_size == 0) {
+    return;
+  }
   // find a coroutine to run
   int chosed_num = rand() % g_sched_list_size;
   struct co *co_to_run = sched_list_guard;
