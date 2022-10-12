@@ -21,6 +21,7 @@ struct co {
   const char *name_;
   void (*func_)(void *arg);
   void *arg_;
+  void (*exit_func)(void *);
 
   enum co_status status_;
   struct co *waiter_;
@@ -73,6 +74,14 @@ void InsertToList(struct co *guard, struct co *x) {
   guard->next_ = x;
 }
 
+void co_exit() {
+  struct co *co_self = g_running_co;
+  struct co *waiter = co_self->waiter_;
+  assert(waiter == RemoveFromList(waiting_list_guard, waiter->name_));
+  // wake waiter
+  InsertToList(sched_list_guard, waiter);
+}
+
 void schedule() {
   // find a coroutine to run
   int chosed_num = rand() % g_sched_list_size;
@@ -93,7 +102,7 @@ void schedule() {
     g_running_co = co_to_run;
     if (co_to_run->status_ == CO_NEW) {
       co_to_run->status_ = CO_RUNNING;
-      stack_switch_call(co_to_run->stack_ + 0x4ff0, co_to_run->func_,
+      stack_switch_call(co_to_run->stack_ + 0x4ff8, co_to_run->func_,
                         (uintptr_t)co_to_run->arg_);
     } else {
       co_to_run->status_ = CO_RUNNING;
@@ -107,6 +116,7 @@ struct co *co_start(const char *name, void (*func)(void *), void *arg) {
   new_co->name_ = name;
   new_co->func_ = func;
   new_co->arg_ = arg;
+  new_co->exit_func = co_exit;
   new_co->status_ = CO_NEW;
   memset(new_co->stack_, 0, sizeof(uint8_t) * STACK_SIZE);
 
