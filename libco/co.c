@@ -102,7 +102,7 @@ void schedule() {
     g_running_co = co_to_run;
     if (co_to_run->status_ == CO_NEW) {
       co_to_run->status_ = CO_RUNNING;
-      memcpy(co_to_run->stack_ + 0x4fe0, co_to_run->exit_func, 12);
+      memcpy(co_to_run->stack_ + 0x4fd8, co_to_run->exit_func, 12);
       stack_switch_call(co_to_run->stack_ + 0x4fe8, co_to_run->func_,
                         (uintptr_t)co_to_run->arg_);
     } else {
