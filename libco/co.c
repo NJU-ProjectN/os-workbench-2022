@@ -8,7 +8,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#define STACK_SIZE 10240
+#define STACK_SIZE 20480
 
 enum co_status {
   CO_NEW = 0,
@@ -27,7 +27,7 @@ struct co {
   struct co *waiter_;
   struct co *next_;
   jmp_buf context_;
-  uint16_t stack_[STACK_SIZE];
+  uint8_t stack_[STACK_SIZE];
 };
 
 static struct co *g_running_co;
@@ -102,9 +102,9 @@ void schedule() {
     g_running_co = co_to_run;
     if (co_to_run->status_ == CO_NEW) {
       co_to_run->status_ = CO_RUNNING;
-      memset((co_to_run->stack_ + 0x27f0), (uintptr_t)(co_to_run->exit_func),
+      memset(co_to_run->stack_ + 0x4ff8, (uintptr_t)co_to_run->exit_func,
              sizeof(uintptr_t));
-      stack_switch_call(co_to_run->stack_ + 0x27f0, co_to_run->func_,
+      stack_switch_call(co_to_run->stack_ + 0x4ff8, co_to_run->func_,
                         (uintptr_t)co_to_run->arg_);
     } else {
       co_to_run->status_ = CO_RUNNING;
@@ -120,7 +120,7 @@ struct co *co_start(const char *name, void (*func)(void *), void *arg) {
   new_co->arg_ = arg;
   new_co->exit_func = co_exit;
   new_co->status_ = CO_NEW;
-  memset(new_co->stack_, 0, sizeof(uint16_t) * STACK_SIZE);
+  memset(new_co->stack_, 0, sizeof(uint8_t) * STACK_SIZE);
 
   // context and status should be set before running
   if (sched_list_guard == NULL) {
