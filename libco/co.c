@@ -109,12 +109,11 @@ void schedule() {
 void co_exit() {
   struct co *co_self = g_running_co;
   struct co *waiter = co_self->waiter_;
-  if (waiter == NULL) {
-    schedule();
+  if (waiter != NULL) {
+    assert(waiter == RemoveFromList(waiting_list_guard, waiter->name_));
+    // wake waiter
+    InsertToList(sched_list_guard, waiter);
   }
-  assert(waiter == RemoveFromList(waiting_list_guard, waiter->name_));
-  // wake waiter
-  InsertToList(sched_list_guard, waiter);
   RemoveFromList(sched_list_guard, co_self->name_);
 
   // run next
