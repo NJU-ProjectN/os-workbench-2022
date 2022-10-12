@@ -91,7 +91,9 @@ void schedule() {
   if (i == 0) {
     co_to_run->status_ = CO_NEW;
     g_running_co = co_to_run;
+    g_running_co->status_ = CO_WAITING;
     if (co_to_run->status_ == CO_NEW) {
+      co_to_run = CO_RUNNING;
       stack_switch_call(co_to_run->stack_, co_to_run->func_,
                         (uintptr_t)co_to_run->arg_);
     } else {
