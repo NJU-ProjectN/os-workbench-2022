@@ -53,15 +53,15 @@ static inline void stack_switch_call(void *sp, void *entry, uintptr_t arg) {
   );
 }
 
-struct co *RemoveFromList(struct co *guard, const char *name) {
-  struct co *prev = NULL, *curr = guard;
+struct co *RemoveFromList(struct co **guard, const char *name) {
+  struct co *prev = NULL, *curr = *guard;
   while (curr != NULL && curr->name_ != name) {
     prev = curr;
     curr = curr->next_;
   }
 
-  if (curr == guard) {
-    guard = curr->next_;
+  if (curr == *guard) {
+    *guard = curr->next_;
   } else {
     prev->next_ = curr->next_;
   }
