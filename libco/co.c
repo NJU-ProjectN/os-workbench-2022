@@ -8,7 +8,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#define STACK_SIZE 40960
+#define STACK_SIZE 409600
 
 enum co_status {
   CO_NEW = 0,
