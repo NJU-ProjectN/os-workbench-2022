@@ -139,9 +139,4 @@ void co_wait(struct co *co_to_wait) {
   free(co_to_wait);
 }
 
-void co_yield() {
-  int i = setjmp(g_running_co->context_);
-  if (i == 0) {
-    schedule();
-  }
-}
+void co_yield() { schedule(); }
