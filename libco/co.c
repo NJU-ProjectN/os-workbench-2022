@@ -8,7 +8,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#define STACK_SIZE 20480
+#define STACK_SIZE 10240
 
 enum co_status {
   CO_NEW = 0,
@@ -27,7 +27,7 @@ struct co {
   struct co *waiter_;
   struct co *next_;
   jmp_buf context_;
-  uint8_t stack_[STACK_SIZE];
+  uint16_t stack_[STACK_SIZE];
 };
 
 static struct co *g_running_co;
@@ -102,8 +102,9 @@ void schedule() {
     g_running_co = co_to_run;
     if (co_to_run->status_ == CO_NEW) {
       co_to_run->status_ = CO_RUNNING;
-      *(co_to_run->stack_ + 0x4ff8) = (void *)co_to_run->exit_func;
-      stack_switch_call(co_to_run->stack_ + 0x4ff8, co_to_run->func_,
+      memset(co_to_run->stack_ + 0x27f8, (void *)co_to_run->exit_func,
+             sizeof(void *));
+      stack_switch_call(co_to_run->stack_ + 0x27f8, co_to_run->func_,
                         (uintptr_t)co_to_run->arg_);
     } else {
       co_to_run->status_ = CO_RUNNING;
