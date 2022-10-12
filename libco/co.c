@@ -32,8 +32,8 @@ struct co {
 };
 
 static struct co *g_running_co;
-static struct co *waiting_list_guard;
-static struct co *sched_list_guard;
+static struct co *waiting_list_guard = NULL;
+static struct co *sched_list_guard = NULL;
 static uint32_t g_sched_list_size = 0;
 uint32_t main_waited = 0;
 
