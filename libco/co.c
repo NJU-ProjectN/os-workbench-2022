@@ -102,8 +102,8 @@ void schedule() {
     g_running_co = co_to_run;
     if (co_to_run->status_ == CO_NEW) {
       co_to_run->status_ = CO_RUNNING;
-      memset(co_to_run->stack_ + 0x27f8, (void *)co_to_run->exit_func,
-             sizeof(void *));
+      memset(co_to_run->stack_ + 0x27f8, (uintptr_t)(co_to_run->exit_func),
+             sizeof(uintptr_t));
       stack_switch_call(co_to_run->stack_ + 0x27f8, co_to_run->func_,
                         (uintptr_t)co_to_run->arg_);
     } else {
