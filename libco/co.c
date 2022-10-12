@@ -16,7 +16,7 @@ enum co_status {
 };
 
 struct co {
-  char *name_;
+  const char *name_;
   void (*func_)(void *arg);
   void *arg_;
 
@@ -49,14 +49,23 @@ static inline void stack_switch_call(void *sp, void *entry, uintptr_t arg) {
 }
 
 void schedule() {
+  // find a coroutine to run
   int chosed_num = rand() % g_sched_list_size;
   struct co *co_to_run = sched_list_guard;
   while (--chosed_num >= 0) {
     co_to_run = co_to_run->next_;
   }
+
+  // no coroutine to run, return to main workflow
+  if (co_to_run == NULL) {
+    return;
+  }
+
+  // save current and run next
   int i = setjmp(g_running_co->context_);
   if (i == 0) {
-    stack_switch_call();
+    stack_switch_call(co_to_run->stack_, co_to_run->func_,
+                      (uintptr_t)co_to_run->arg_);
   }
 }
 
