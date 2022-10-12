@@ -75,17 +75,6 @@ void InsertToList(struct co *guard, struct co *x) {
   guard->next_ = x;
 }
 
-void co_exit() {
-  struct co *co_self = g_running_co;
-  struct co *waiter = co_self->waiter_;
-  if (waiter == NULL) {
-    return;
-  }
-  assert(waiter == RemoveFromList(waiting_list_guard, waiter->name_));
-  // wake waiter
-  InsertToList(sched_list_guard, waiter);
-}
-
 void schedule() {
   // find a coroutine to run
   int chosed_num = rand() % g_sched_list_size;
@@ -115,6 +104,20 @@ void schedule() {
       longjmp(co_to_run->context_, 1);
     }
   }
+}
+
+void co_exit() {
+  struct co *co_self = g_running_co;
+  struct co *waiter = co_self->waiter_;
+  if (waiter == NULL) {
+    return;
+  }
+  assert(waiter == RemoveFromList(waiting_list_guard, waiter->name_));
+  // wake waiter
+  InsertToList(sched_list_guard, waiter);
+
+  // run next
+  schedule();
 }
 
 struct co *co_start(const char *name, void (*func)(void *), void *arg) {
