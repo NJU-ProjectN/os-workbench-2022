@@ -52,7 +52,25 @@ static struct co_handle sched_list_guard = {
     .this_ = NULL,
 };
 static uint32_t g_sched_list_size = 0;
-uint32_t main_waited = 0;
+
+struct co *RemoveFromList(struct co *cur) {
+  cur->list_handle_.prev_->next_ = cur->list_handle_.next_;
+  cur->list_handle_.next_->prev_ = cur->list_handle_.prev_;
+  return cur;
+}
+
+void InsertToList(struct co_handle *guard, struct co *x) {
+  x->list_handle_.next_ = guard->next_;
+  x->list_handle_.prev_ = guard;
+  guard->next_ = &x->list_handle_;
+  x->list_handle_.next_->prev_ = &x->list_handle_;
+}
+
+inline struct co *GetCoByHandle(struct co_handle *handle) {
+  // struct co temp_co;
+  // off_t offset = (uintptr_t)&temp_co.list_handle_ - (uintptr_t)&temp_co;
+  return handle->this_;
+}
 
 static inline void stack_switch_call(void *sp, void *entry, uintptr_t arg) {
   asm volatile(
@@ -68,25 +86,6 @@ static inline void stack_switch_call(void *sp, void *entry, uintptr_t arg) {
       : "memory"
 #endif
   );
-}
-
-struct co *RemoveFromList(struct co *cur) {
-  cur->list_handle_.prev_->next_ = cur->list_handle_.next_;
-  cur->list_handle_.next_->prev_ = cur->list_handle_.prev_;
-  return cur;
-}
-
-void InsertToList(struct co_handle *guard, struct co *x) {
-  x->list_handle_.next_ = guard->next_;
-  x->list_handle_.prev_ = guard;
-  guard->next_ = &x->list_handle_;
-  x->list_handle_.next_->prev_ = &x->list_handle_;
-}
-
-struct co *GetCoByHandle(struct co_handle *handle) {
-  // struct co temp_co;
-  // off_t offset = (uintptr_t)&temp_co.list_handle_ - (uintptr_t)&temp_co;
-  return handle->this_;
 }
 
 void schedule() {
