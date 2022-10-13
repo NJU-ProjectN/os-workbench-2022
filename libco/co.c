@@ -18,6 +18,11 @@ enum co_status {
   CO_DEAD,
 };
 
+struct co_handle {
+  struct co_handle *prev_;
+  struct co_handle *next_;
+};
+
 struct co {
   const char *name_;
   void (*func_)(void *arg);
@@ -26,14 +31,16 @@ struct co {
 
   enum co_status status_;
   struct co *waiter_;
-  struct co *next_;
+  struct co_handle list_handle_;
   jmp_buf context_;
   uint8_t stack_[STACK_SIZE];
 };
 
 static struct co *g_running_co;
-static struct co *waiting_list_guard = NULL;
-static struct co *sched_list_guard = NULL;
+static struct co_handle sched_list_guard = {
+    .prev_ = &sched_list_guard,
+    .next_ = &sched_list_guard,
+};
 static uint32_t g_sched_list_size = 0;
 uint32_t main_waited = 0;
 
@@ -53,29 +60,22 @@ static inline void stack_switch_call(void *sp, void *entry, uintptr_t arg) {
   );
 }
 
-struct co *RemoveFromList(struct co **guard, const char *name) {
-  struct co *prev = NULL, *curr = *guard;
-  while (curr != NULL && curr->name_ != name) {
-    prev = curr;
-    curr = curr->next_;
-  }
-
-  if (curr == *guard) {
-    *guard = curr->next_;
-  } else {
-    prev->next_ = curr->next_;
-  }
-  return curr;
+struct co *RemoveFromList(struct co *cur) {
+  cur->list_handle_.prev_->next_ = cur->list_handle_.next_;
+  cur->list_handle_.next_->prev_ = cur->list_handle_.prev_;
 }
 
-void InsertToList(struct co *guard, struct co *x) {
-  if (guard == NULL) {
-    guard = x;
-    guard->next_ = NULL;
-    return;
-  }
-  x->next_ = guard->next_;
-  guard->next_ = x;
+void InsertToList(struct co_handle *guard, struct co *x) {
+  x->list_handle_.next_ = guard->next_;
+  x->list_handle_.prev_ = guard;
+  guard->next_ = &x->list_handle_;
+  x->list_handle_.next_->prev_ = &x->list_handle_;
+}
+
+struct co *GetCoByHandle(struct co_handle *handle) {
+  struct co temp_co;
+  off_t offset = (uintptr_t)&temp_co.list_handle_ - (uintptr_t)&temp_co;
+  return (struct co *)(handle - offset);
 }
 
 void schedule() {
@@ -83,16 +83,15 @@ void schedule() {
     return;
   }
   // find a coroutine to run
+  assert(g_sched_list_size != 0);
   int chosed_num = rand() % g_sched_list_size;
-  struct co *co_to_run = sched_list_guard;
+  struct co *co_to_run = GetCoByHandle(sched_list_guard.next_);
   while (--chosed_num >= 0) {
-    co_to_run = co_to_run->next_;
+    co_to_run = GetCoByHandle(co_to_run->list_handle_.next_);
   }
 
   // no coroutine to run, return to main workflow
-  if (co_to_run == NULL) {
-    return;
-  }
+  assert(co_to_run != NULL);
 
   // save current and run next
   int i = setjmp(g_running_co->context_);
@@ -117,10 +116,10 @@ void co_exit() {
   struct co *waiter = co_self->waiter_;
   if (waiter != NULL) {
     // wake waiter
-    InsertToList(sched_list_guard, waiter);
+    InsertToList(&sched_list_guard, waiter);
     g_sched_list_size++;
   }
-  RemoveFromList(&sched_list_guard, co_self->name_);
+  RemoveFromList(co_self);
   g_sched_list_size--;
 
   // run next
@@ -138,12 +137,7 @@ struct co *co_start(const char *name, void (*func)(void *), void *arg) {
   memset(new_co->stack_, 0, sizeof(uint8_t) * STACK_SIZE);
 
   // context and status should be set before running
-  if (sched_list_guard == NULL) {
-    sched_list_guard = new_co;
-  } else {
-    new_co->next_ = sched_list_guard->next_;
-    sched_list_guard->next_ = new_co;
-  }
+  InsertToList(&sched_list_guard, new_co);
   g_sched_list_size++;
   return new_co;
 }
@@ -155,12 +149,11 @@ void co_wait(struct co *co_to_wait) {
     main_co->status_ = CO_RUNNING;
     g_running_co = main_co;
   }
-  co_to_wait->waiter_ = g_running_co;
 
+  co_to_wait->waiter_ = g_running_co;
   // move g_running_co to waiting_list
-  RemoveFromList(&sched_list_guard, g_running_co->name_);
+  RemoveFromList(g_running_co);
   g_sched_list_size--;
-  InsertToList(waiting_list_guard, g_running_co);
 
   schedule();
 
