@@ -92,7 +92,7 @@ void schedule() {
   assert(g_sched_list_size != 0);
   int chosed_num = rand() % g_sched_list_size;
   struct co *co_to_run = GetCoByHandle(sched_list_guard.next_);
-  while (--chosed_num > 0) {
+  while (--chosed_num >= 0) {
     co_to_run = GetCoByHandle(co_to_run->list_handle_.next_);
   }
 
