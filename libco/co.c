@@ -24,6 +24,8 @@ struct co_handle {
 };
 
 struct co {
+  struct co_handle list_handle_;
+
   const char *name_;
   void (*func_)(void *arg);
   void *arg_;
@@ -31,7 +33,6 @@ struct co {
 
   enum co_status status_;
   struct co *waiter_;
-  struct co_handle list_handle_;
   jmp_buf context_;
   uint8_t stack_[STACK_SIZE];
 };
