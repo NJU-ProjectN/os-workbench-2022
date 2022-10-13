@@ -154,6 +154,7 @@ void co_wait(struct co *co_to_wait) {
     // this is main workflow
     struct co *main_co = co_start("main_coroutine", NULL, NULL);
     main_co->status_ = CO_RUNNING;
+    main_co->exit_func = NULL;
     g_running_co = main_co;
   }
 
