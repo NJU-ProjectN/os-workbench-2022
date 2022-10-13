@@ -158,12 +158,14 @@ void co_wait(struct co *co_to_wait) {
     g_running_co = main_co;
   }
 
-  co_to_wait->waiter_ = g_running_co;
-  // move g_running_co to waiting_list
-  RemoveFromList(g_running_co);
-  g_sched_list_size--;
+  if (co_to_wait->status_ != CO_DEAD) {
+    co_to_wait->waiter_ = g_running_co;
+    // move g_running_co to waiting_list
+    RemoveFromList(g_running_co);
+    g_sched_list_size--;
 
-  co_yield();
+    co_yield();
+  }
 
   // recycle co
   free(co_to_wait);
