@@ -18,7 +18,10 @@ enum co_status {
   CO_DEAD,
 };
 
+struct co;
+
 struct co_handle {
+  struct co *this_;
   struct co_handle *prev_;
   struct co_handle *next_;
 };
@@ -41,6 +44,7 @@ static struct co *g_running_co;
 static struct co_handle sched_list_guard = {
     .prev_ = &sched_list_guard,
     .next_ = &sched_list_guard,
+    .this_ = NULL,
 };
 static uint32_t g_sched_list_size = 0;
 uint32_t main_waited = 0;
@@ -75,9 +79,9 @@ void InsertToList(struct co_handle *guard, struct co *x) {
 }
 
 struct co *GetCoByHandle(struct co_handle *handle) {
-  struct co temp_co;
-  off_t offset = (uintptr_t)&temp_co.list_handle_ - (uintptr_t)&temp_co;
-  return (struct co *)(handle - offset);
+  // struct co temp_co;
+  // off_t offset = (uintptr_t)&temp_co.list_handle_ - (uintptr_t)&temp_co;
+  return handle->this_;
 }
 
 void schedule() {
@@ -139,6 +143,7 @@ struct co *co_start(const char *name, void (*func)(void *), void *arg) {
   memset(new_co->stack_, 0, sizeof(uint8_t) * STACK_SIZE);
 
   // context and status should be set before running
+  new_co->list_handle_.this_ = new_co;
   InsertToList(&sched_list_guard, new_co);
   g_sched_list_size++;
   return new_co;
