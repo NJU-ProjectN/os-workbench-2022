@@ -9,7 +9,11 @@
 #include <unistd.h>
 
 #define STACK_SIZE 20480
+#if __x86_64__
 #define ADDR_SIZE sizeof(void *)
+#else
+#define ADDR_SIZE 4
+#endif
 
 enum co_status {
   CO_NEW = 0,
