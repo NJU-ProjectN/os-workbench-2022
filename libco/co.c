@@ -12,7 +12,7 @@
 #if __x86_64__
 #define ADDR_SIZE sizeof(void *)
 #else
-#define ADDR_SIZE sizeof(uint32_t)
+#define 4
 #endif
 
 enum co_status {
