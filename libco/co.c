@@ -9,10 +9,11 @@
 #include <unistd.h>
 
 #define STACK_SIZE 20480
+#define ADDR_SIZE sizeof(void *)
 #if __x86_64__
-#define ADDR_SIZE sizeof(void *)
+#define RET_OFFET 0
 #else
-#define ADDR_SIZE sizeof(void *)
+#define RET_OFFET 8
 #endif
 
 enum co_status {
@@ -110,10 +111,8 @@ void schedule() {
     g_running_co = co_to_run;
     if (co_to_run->status_ == CO_NEW) {
       co_to_run->status_ = CO_RUNNING;
-      memcpy(co_to_run->stack_ + STACK_SIZE - 3 * ADDR_SIZE,
+      memcpy(co_to_run->stack_ + STACK_SIZE - ADDR_SIZE - RET_OFFET,
              (&co_to_run->exit_func), ADDR_SIZE);
-      // memset(co_to_run->stack_ + STACK_SIZE - 3 * ADDR_SIZE, 0xff,
-      // ADDR_SIZE);
       stack_switch_call(co_to_run->stack_ + STACK_SIZE - ADDR_SIZE,
                         co_to_run->func_, (uintptr_t)co_to_run->arg_);
     } else {
