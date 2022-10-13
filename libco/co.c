@@ -63,6 +63,7 @@ static inline void stack_switch_call(void *sp, void *entry, uintptr_t arg) {
 struct co *RemoveFromList(struct co *cur) {
   cur->list_handle_.prev_->next_ = cur->list_handle_.next_;
   cur->list_handle_.next_->prev_ = cur->list_handle_.prev_;
+  return cur;
 }
 
 void InsertToList(struct co_handle *guard, struct co *x) {
