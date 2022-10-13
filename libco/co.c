@@ -112,7 +112,7 @@ void schedule() {
       co_to_run->status_ = CO_RUNNING;
       // memcpy(co_to_run->stack_ + STACK_SIZE - ADDR_SIZE,
       //        (&co_to_run->exit_func), ADDR_SIZE);
-      memset(co_to_run->stack_ + STACK_SIZE - ADDR_SIZE, 0xff, ADDR_SIZE);
+      memset(co_to_run->stack_ + STACK_SIZE + ADDR_SIZE, 0xff, ADDR_SIZE);
       stack_switch_call(co_to_run->stack_ + STACK_SIZE - ADDR_SIZE,
                         co_to_run->func_, (uintptr_t)co_to_run->arg_);
     } else {
