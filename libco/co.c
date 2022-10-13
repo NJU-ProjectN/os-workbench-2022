@@ -102,7 +102,6 @@ void schedule() {
   // save current and run next
   int i = setjmp(g_running_co->context_);
   if (i == 0) {
-    g_running_co->status_ = CO_WAITING;
     g_running_co = co_to_run;
     if (co_to_run->status_ == CO_NEW) {
       co_to_run->status_ = CO_RUNNING;
@@ -125,6 +124,7 @@ void co_exit() {
     InsertToList(&sched_list_guard, waiter);
     g_sched_list_size++;
   }
+  co_self->status_ = CO_DEAD;
   RemoveFromList(co_self);
   g_sched_list_size--;
 
@@ -162,10 +162,13 @@ void co_wait(struct co *co_to_wait) {
   RemoveFromList(g_running_co);
   g_sched_list_size--;
 
-  schedule();
+  co_yield();
 
   // recycle co
   free(co_to_wait);
 }
 
-void co_yield() { schedule(); }
+void co_yield() {
+  g_running_co->status_ = CO_WAITING;
+  schedule();
+}
