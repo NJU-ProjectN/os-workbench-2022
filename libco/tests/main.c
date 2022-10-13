@@ -97,7 +97,7 @@ static void test_2() {
   co_wait(thd1);
   co_wait(thd2);
 
-  g_running = 0;
+  // g_running = 0;
 
   co_wait(thd3);
   co_wait(thd4);
