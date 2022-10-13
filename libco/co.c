@@ -85,13 +85,14 @@ struct co *GetCoByHandle(struct co_handle *handle) {
 }
 
 void schedule() {
+  struct co *co_to_run = GetCoByHandle(sched_list_guard.next_);
+
   if (g_sched_list_size == 0) {
     return;
   }
   // find a coroutine to run
   assert(g_sched_list_size != 0);
   int chosed_num = rand() % g_sched_list_size;
-  struct co *co_to_run = GetCoByHandle(sched_list_guard.next_);
   while (--chosed_num >= 0) {
     co_to_run = GetCoByHandle(co_to_run->list_handle_.next_);
   }
@@ -154,7 +155,6 @@ void co_wait(struct co *co_to_wait) {
     // this is main workflow
     struct co *main_co = co_start("main_coroutine", NULL, NULL);
     main_co->status_ = CO_RUNNING;
-    main_co->exit_func = NULL;
     g_running_co = main_co;
   }
 
