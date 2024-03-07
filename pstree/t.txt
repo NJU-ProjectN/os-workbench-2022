@@ -1,0 +1,16 @@
+me:   gdm-session-wor                                                                                                          
+Umask:  0002                                                                                                                     
+State:  S (sleeping)                                                                                                             
+Tgid:   973                                                                                                                      
+Ngid:   0                                                                                                                        
+Pid:    973                                                                                                                      
+PPid:   933                                                                                                                      
+TracerPid:      0                                                                                                                
+Uid:    0       0       0       0                                                                                                
+Gid:    1000    1000    1000    1000                                                                                             
+FDSize: 64                                                                                                                       
+Groups: 4 24 27 30 46 122 135 136 1000                                                                                           
+NStgid: 973                                                                                                                      
+NSpid:  973                                                                                                                      
+NSpgid: 933                                                                                                                      
+NSsid:  933
